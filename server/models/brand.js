@@ -1,0 +1,25 @@
+const { Model, DataTypes } = require("sequelize");
+const { sequelize } = require("../utils/db");
+
+class Brand extends Model {}
+Brand.init(
+  {
+    id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true,
+    },
+    brand_name: {
+      type: DataTypes.TEXT,
+      allowNull: false,
+    },
+  },
+  {
+    sequelize,
+    underscored: true,
+    timestamps: true,
+    modelName: "brand",
+  }
+);
+
+module.exports = Brand;

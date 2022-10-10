@@ -1,4 +1,4 @@
-import toskaLogo from "../assets/images/toskalogo_color.svg";
+// import toskaLogo from "../assets/images/toskalogo_color.svg";
 import { Link } from "react-router-dom";
 
 const NavBar = () => (
