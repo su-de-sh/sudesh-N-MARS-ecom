@@ -1,11 +1,11 @@
 import { Routes, Route } from "react-router-dom";
 
-import FrontPage from "./FrontPage";
+import Products from "./Products";
 // import MessageView from "./MessageView";
 
 const Router = () => (
   <Routes>
-    <Route path="/" element={<FrontPage />} />
+    <Route path="/" element={<Products />} />
   </Routes>
 );
 

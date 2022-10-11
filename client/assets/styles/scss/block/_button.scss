@@ -6,14 +6,14 @@
   text-decoration: none;
   font-size: $h5;
   &:hover {
-    background-color: $primary-color-dark;
+    background-color: $primary-color-grey;
   }
 }
 
 .secondary-button {
   padding: 0rem 3rem;
   border: 1px solid #000;
-  color: $text-color;
+  color: $light-color;
   font-size: $h5;
   text-decoration: none;
 }
