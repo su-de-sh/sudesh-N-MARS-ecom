@@ -1,12 +1,13 @@
-@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;800&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
 @import url("https://fonts.googleapis.com/css2?family=Archivo:wght@200;300;400;500;600&family=Lora:ital,wght@0,400;0,500;1,400;1,500&family=Nunito:wght@300;400;800&display=swap");
 
-$primary-font: "Archivo", sans-serif;
-$secondary-font: "Nunito", sans-serif;
+$primary-font: "Roboto", sans-serif;
+$secondary-font: "Roboto", sans-serif;
 
 $primary-color:  #181717;
-$primary-color-dark: #3d5735;
-$text-color: #202123;
+$primary-color-grey: #D9D9D9;
+$dark-color: #0b0b0b;
+
 $light-color: #F7F5F5;;
 
 $wrapper-max-width: 1280px;
