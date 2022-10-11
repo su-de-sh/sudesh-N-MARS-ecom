@@ -1,5 +1,6 @@
 .text-link {
   text-decoration: none;
+  color: $light-color;
   &:hover {
     text-decoration: underline;
   }

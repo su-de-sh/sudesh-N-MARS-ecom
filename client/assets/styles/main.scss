@@ -4,6 +4,7 @@
 
 @import "scss/composition/card";
 @import "scss/composition/dark-bg";
+@import "scss/composition/navbar";
 
 @import "scss/utility/flex";
 @import "scss/utility/grid";
@@ -17,5 +18,8 @@
 @import "scss/block/link";
 @import "scss/block/hero-title";
 
+@import "scss/exception/searchbox";
+@import "scss/exception/search-icon";
+@import "scss/exception/cart-icon";
 @import "scss/exception/logo";
 @import "scss/exception/hero";
