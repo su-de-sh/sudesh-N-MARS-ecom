@@ -27,22 +27,22 @@ Product.init(
       type: DataTypes.INTEGER,
       defaultValue: 0,
     },
-    // category: {
-    //   type: DataTypes.STRING,
-    //   allowNull: false,
-    //   references: { model: "categories", key: "id" },
-    // },
-    // brand: {
-    //   type: DataTypes.STRING,
-    //   allowNull: false,
-    //   references: { model: "brands", key: "id" },
-    // },
+    categoryId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: { model: "categories", key: "id" },
+    },
+    brandId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: { model: "brands", key: "id" },
+    },
   },
   {
     sequelize,
     underscored: true,
     timestamps: false,
-    freezeTableName: true,
+
     modelName: "product",
   }
 );
