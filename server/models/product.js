@@ -18,6 +18,8 @@ Product.init(
 
     imagePath: {
       type: DataTypes.TEXT,
+      defaultValue: "no_image",
+      allowNull: false,
     },
 
     price: {
