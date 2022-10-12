@@ -15,6 +15,11 @@ Product.init(
       type: DataTypes.TEXT,
       allowNull: false,
     },
+
+    imagePath: {
+      type: DataTypes.TEXT,
+    },
+
     price: {
       type: DataTypes.INTEGER,
       allowNull: false,
@@ -42,7 +47,7 @@ Product.init(
     sequelize,
     underscored: true,
     timestamps: false,
-
+    freezeTableName: true,
     modelName: "product",
   }
 );
