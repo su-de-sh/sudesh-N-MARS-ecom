@@ -12,7 +12,7 @@ const Products = () => {
           return (
             <div key={index} className="content">
               <img className="product-img" src={productImage} alt="product" />
-              <h3 className="title">Iphone 14</h3>
+              <h3 className="title">Iphone 13 pro max</h3>
               <p className="desc">lorem ipsum a quick brown fox</p>
               <h6 className="price">Rs. 8000</h6>
               <button className="add-to-cart-btn"> Add to cart</button>
