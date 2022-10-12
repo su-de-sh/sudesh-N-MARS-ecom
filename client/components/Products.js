@@ -9,6 +9,12 @@ const Products = ({ products }) => {
 
       <div className="gallery">
         {products.map((product, index) => {
+          product.specification.length > 30
+            ? (product.specification = `${product.specification.slice(
+                0,
+                30
+              )}...`)
+            : products.specification;
           return (
             <div key={index} className="content">
               <img className="product-img" src={productImage} alt="product" />
