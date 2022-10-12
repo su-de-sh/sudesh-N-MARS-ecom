@@ -5,7 +5,7 @@ const Products = () => {
   const products = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   return (
     <div className="wrapper ">
-      <div className="  split-center"> All Products</div>
+      <div className=" flex split-center"> All Products</div>
 
       <div className="gallery">
         {products.map((product, index) => {
