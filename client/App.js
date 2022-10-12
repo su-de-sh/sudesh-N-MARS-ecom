@@ -9,12 +9,12 @@ const App = () => {
   useEffect(() => {
     productServices.getAll().then((result) => setProducts(result));
   }, []);
-  console.log(products);
+  if (!products.length) return null;
   return (
     <>
       <NavBar />
 
-      <Router />
+      <Router products={products} />
     </>
   );
 };
