@@ -17,7 +17,11 @@ const Products = ({ products }) => {
             : products.specification;
           return (
             <div key={index} className="content">
-              <img className="product-img" src={productImage} alt="product" />
+              <img
+                className="product-img"
+                src={product.imagePath}
+                alt={`$product.productName`}
+              />
               <h3 className="title">{product.productName}</h3>
               <p className="desc">{product.specification}</p>
               <h6 className="price">Rs.{product.price}</h6>

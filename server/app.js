@@ -2,9 +2,11 @@ const express = require("express");
 const cors = require("cors");
 const path = require("path");
 const productRouter = require("./controllers/productRouter");
+const fileUpload = require("express-fileupload");
 
 const app = express();
 
+app.use(fileUpload({ useTempFiles: true }));
 app.use(cors());
 app.use(express.json());
 app.use(express.static("dist"));
