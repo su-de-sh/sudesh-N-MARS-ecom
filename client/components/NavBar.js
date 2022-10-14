@@ -27,9 +27,12 @@ const NavBar = () => (
         <Link to="/cart">
           <img src={cartIcon} alt="cart-icon" className="cart-icon" />
         </Link>
-
         <Link to="/login" className="text-link ">
-          Login/Signup
+          Login
+        </Link>
+        <div className="text-link">/</div>
+        <Link to="/login" className="text-link ">
+          SignUp
         </Link>
       </div>
     </div>
