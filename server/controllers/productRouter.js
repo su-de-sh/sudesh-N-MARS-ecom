@@ -1,6 +1,5 @@
-const Product = require("../models/product");
-const Category = require("../models/category");
-const Brand = require("../models/brand");
+const { Product, Category, Brand } = require("../models");
+
 const cloudinary = require("cloudinary").v2;
 
 cloudinary.config({
@@ -13,11 +12,11 @@ const productRouter = require("express").Router();
 
 productRouter.get("/", async (req, res) => {
   const products = await Product.findAll({
-    // include: {
-    //   model: Category,
-    // },
+    include: [{ model: Category }, { model: Brand }],
+
     limit: req.query.limit,
   });
+
   res.json(products);
 });
 
