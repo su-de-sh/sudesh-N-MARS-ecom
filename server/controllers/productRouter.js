@@ -1,4 +1,6 @@
 const Product = require("../models/product");
+const Category = require("../models/category");
+const Brand = require("../models/brand");
 const cloudinary = require("cloudinary").v2;
 
 cloudinary.config({
@@ -11,7 +13,9 @@ const productRouter = require("express").Router();
 
 productRouter.get("/", async (req, res) => {
   const products = await Product.findAll({
-    attributes: {},
+    // include: {
+    //   model: Category,
+    // },
     limit: req.query.limit,
   });
   res.json(products);
@@ -19,7 +23,10 @@ productRouter.get("/", async (req, res) => {
 
 productRouter.post("/", async (req, res) => {
   const file = req.files.photo;
-  console.log(req.body);
+
+  const category = await Category.findByPk(req.body.categoryId);
+  const brand = await Brand.findByPk(req.body.brandId);
+
   cloudinary.uploader.upload(file.tempFilePath, async (err, result) => {
     console.log(req.body);
     const product = {
@@ -28,8 +35,8 @@ productRouter.post("/", async (req, res) => {
       imagePath: result.url,
       specification: req.body.specification,
       quantity: req.body.quantity,
-      categoryId: req.body.categoryId,
-      brandId: req.body.brandId,
+      categoryId: category.id,
+      brandId: brand.id,
     };
     const newProduct = await Product.create(product);
     res.json(newProduct);
