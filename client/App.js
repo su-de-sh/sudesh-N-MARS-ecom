@@ -1,20 +1,23 @@
 import React from "react";
 import NavBar from "./components/NavBar";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
 import Router from "./components/Router";
-import productServices from "./services/productServices";
+
+import { initializeProducts } from "./reducers/productReducer";
 
 const App = () => {
-  const [products, setProducts] = useState([]);
+  const dispatch = useDispatch();
   useEffect(() => {
-    productServices.getAll().then((result) => setProducts(result));
-  }, []);
-  if (!products.length) return null;
+    // load products in store form backend
+    dispatch(initializeProducts());
+  }, [dispatch]);
+
   return (
     <>
       <NavBar />
 
-      <Router products={products} />
+      <Router />
     </>
   );
 };

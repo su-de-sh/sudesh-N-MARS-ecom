@@ -1,20 +1,16 @@
 import React from "react";
-import productImage from "../assets/images/iphone.jpeg";
+import { useSelector } from "react-redux";
 
-const Products = ({ products }) => {
-  console.log(products);
+const Products = () => {
+  //retrive all products from redux store
+  const products = useSelector((state) => state.products);
+
   return (
     <div className="wrapper ">
       <div className=" flex split-center"> All Products</div>
 
       <div className="gallery">
         {products.map((product, index) => {
-          product.specification.length > 30
-            ? (product.specification = `${product.specification.slice(
-                0,
-                30
-              )}...`)
-            : products.specification;
           return (
             <div key={index} className="content">
               <img
@@ -23,7 +19,7 @@ const Products = ({ products }) => {
                 alt={`$product.productName`}
               />
               <h3 className="title">{product.productName}</h3>
-              <p className="desc">{product.specification}</p>
+              <p className="desc">{product.specification.slice(0, 50)}...</p>
               <h6 className="price">Rs.{product.price}</h6>
               <button className="add-to-cart-btn"> Add to cart</button>
             </div>
