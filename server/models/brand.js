@@ -9,7 +9,7 @@ Brand.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    brand_name: {
+    brandName: {
       type: DataTypes.TEXT,
       allowNull: false,
     },
