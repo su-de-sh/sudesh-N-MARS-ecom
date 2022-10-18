@@ -1,6 +1,7 @@
 const Brand = require("./brand");
 const Category = require("./category");
 const Product = require("./product");
+const User = require("./user");
 
 Category.hasMany(Product);
 Product.belongsTo(Category);
@@ -12,4 +13,5 @@ module.exports = {
   Product,
   Category,
   Brand,
+  User,
 };

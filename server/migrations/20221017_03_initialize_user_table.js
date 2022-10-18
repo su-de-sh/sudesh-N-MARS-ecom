@@ -7,11 +7,11 @@ module.exports = {
         primaryKey: true,
         autoIncrement: true,
       },
-      firstName: {
+      first_name: {
         type: DataTypes.TEXT,
         allowNull: false,
       },
-      lastName: {
+      last_name: {
         type: DataTypes.TEXT,
         allowNull: false,
       },
@@ -19,7 +19,7 @@ module.exports = {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      passwordHash: {
+      password_hash: {
         type: DataTypes.STRING,
       },
     });

@@ -3,6 +3,7 @@ const cors = require("cors");
 const path = require("path");
 const productRouter = require("./controllers/productRouter");
 const fileUpload = require("express-fileupload");
+const userRouter = require("./controllers/userRouter");
 
 const app = express();
 
@@ -12,6 +13,7 @@ app.use(express.json());
 app.use(express.static("dist"));
 
 app.use("/api/products", productRouter);
+app.use("/api/users", userRouter);
 
 // sends index.html
 app.use("*", (req, res) => {

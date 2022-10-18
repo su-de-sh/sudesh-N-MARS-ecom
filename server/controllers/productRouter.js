@@ -27,7 +27,6 @@ productRouter.post("/", async (req, res) => {
   const brand = await Brand.findByPk(req.body.brandId);
 
   cloudinary.uploader.upload(file.tempFilePath, async (err, result) => {
-    console.log(req.body);
     const product = {
       productName: req.body.productName,
       price: req.body.price,
