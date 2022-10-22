@@ -1,0 +1,18 @@
+
+.container{
+   
+    height: 50rem;
+    background-color: $primary-color-grey;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+
+
+.margin{
+    &-sm{
+        margin: 1rem;
+    }
+}
