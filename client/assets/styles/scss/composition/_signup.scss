@@ -1,13 +1,24 @@
 
 .container{
    
-    height: 50rem;
+    height: 35rem;
+    
     background-color: $primary-color-grey;
     display: flex;
     justify-content: center;
-    align-items: center;
-    position: relative;
+  
+   
+
+    &-md{
+        
+        background-color: #3C3636;
+        width: 45%;
+        height: 70%;
+      
+        padding: 2rem
+    }
 }
+
 
 
 

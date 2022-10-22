@@ -4,4 +4,17 @@
   &:hover {
     text-decoration: underline;
   }
+
+}
+
+.text-link Link {
+  &:active { text-decoration: underline;
+
+  }
+}
+
+#links a {
+  text-decoration: none;
+  &:active{text-decoration: underline;}
+
 }

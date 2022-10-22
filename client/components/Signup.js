@@ -1,16 +1,20 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Signup = () => {
   return (
     <div>
       <div className="wrapper container">
-        <div className="margin-sm  width-md ">
-          <form className="width-md" action="">
+        <div className="margin-sm  width-md container-md">
+          <form className="width-md text-center" action="">
             <input type="text" placeholder="Fullname" />
             <input type="text" placeholder="Lastname" />
             <input type="email" placeholder="Email" />
             <input type="password" placeholder="Password" />
-            <button className="primary-button">SignUp</button>
+            <p className="text-white">
+              Already have an account? <Link to="/login"> Login</Link>
+            </p>
+            <button className="primary-button ">SignUp</button>
           </form>
         </div>
       </div>

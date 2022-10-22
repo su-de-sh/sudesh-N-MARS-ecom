@@ -1,9 +1,13 @@
 .primary-button {
   padding: 0 3rem;
-  background-color: $primary-color;
-  color: $light-color;
+  background-color: $primary-color-grey;
+  color: $primary-color;
+  font-weight: bold;
   border: 1px solid $primary-color;
   text-decoration: none;
+  width: 10rem;
+ 
+  
   font-size: $h5;
   &:hover {
     background-color: $dark-color;
