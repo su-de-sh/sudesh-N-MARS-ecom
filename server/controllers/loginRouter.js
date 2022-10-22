@@ -9,18 +9,24 @@ loginRouter.post("/", async (req, res) => {
   const user = await User.findOne({ where: { email } });
 
   if (!user) {
-    return res.status(400).json({ error: "wrong credentials" });
+    return res.json({ error: "*User doesnot exists. Try again!!" });
   }
   const isCorrect = await bcrypt.compare(password, user.passwordHash);
-  if (!user || !isCorrect) {
-    return res.status(400).json({ error: "wrong credentials" });
+  if (user && !isCorrect) {
+    return res.json({ error: "*Wrong password. Try again!!" });
   }
   const userForToken = {
     email: user.email,
     id: user._id,
   };
   const token = jwt.sign(userForToken, config.SEKRET);
-  res.status(200).json({ token, email: user.email, id: user._id });
+  res.status(200).json({
+    token,
+    email: user.email,
+    firstName: user.firstName,
+    lastName: user.lastName,
+    id: user._id,
+  });
 });
 
 module.exports = loginRouter;
