@@ -7,7 +7,7 @@ const Signup = () => {
       <div className="wrapper container">
         <div className="margin-sm  width-md container-md">
           <form className="width-md text-center" action="">
-            <input type="text" placeholder="Fullname" />
+            <input type="text" placeholder="Firstname" />
             <input type="text" placeholder="Lastname" />
             <input type="email" placeholder="Email" />
             <input type="password" placeholder="Password" />

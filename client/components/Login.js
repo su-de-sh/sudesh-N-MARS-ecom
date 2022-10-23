@@ -19,7 +19,7 @@ const Login = () => {
       setMessage(response.error);
       setTimeout(() => setMessage(null), 3000);
     } else {
-      console.log("happy moment");
+      window.localStorage.setItem("loggedinUser", JSON.stringify(response));
       navigate("/");
     }
   };
