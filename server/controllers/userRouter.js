@@ -11,13 +11,17 @@ userRouter.get("/", async (req, res) => {
 userRouter.post("/", async (req, res, next) => {
   try {
     const { firstName, lastName, email, password } = req.body;
-    console.log(email, "email");
 
     const existingEmail = await User.findOne({
       where: { email: email },
     });
     if (existingEmail) {
-      return res.send("Email already exists!!");
+      return res.json({ error: "*Email already exists. Try with new one!!" });
+    }
+    if (password.length < 8) {
+      return res.json({
+        error: "*Password lenght must be at least 8 character!!",
+      });
     }
 
     const saltRounds = 10;
