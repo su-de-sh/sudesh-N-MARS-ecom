@@ -17,23 +17,28 @@ const NavBar = () => {
   return (
     <div className="wrapper">
       <div className="flex split-pair align-center region-tn nav-bar">
-        <div className="flex  align-center gap-2">
+        <Link to="/">
           <img src={logo} alt="toska" className="logo" />
-          <Link to="/" className="text-link">
-            Home
-          </Link>
-          <Link to="/category" className="text-link">
-            Category
-          </Link>
-          <div className="search-box flex align-center">
-            <form action="">
-              <input type="text" placeholder="Search" className="input-field" />
-            </form>
-            <img src={searchIcon} alt="search-icon" className="search-icon" />
-          </div>
+        </Link>
+        <Link to="/" className="text-link">
+          Home
+        </Link>
+        <Link to="/category" className="text-link">
+          Category
+        </Link>
+
+        <div className="flex split-pair align-center">
+          <form action="">
+            <input type="text" placeholder="Search" className="search-box" />
+          </form>
+          <img
+            src={searchIcon}
+            alt="search-icon"
+            className="search-icon margin-sm"
+          />
         </div>
 
-        <div className="flex align-center split-pair gap-1">
+        <div className="flex split-pair align-center">
           <Link to="/cart">
             <img src={cartIcon} alt="cart-icon" className="cart-icon" />
           </Link>
@@ -46,7 +51,7 @@ const NavBar = () => {
             </>
           ) : (
             <>
-              <Link to="/login" className="text-link ">
+              <Link to="/login" className="text-link margin-sm">
                 Login
               </Link>
               <div className="text-link">/</div>
