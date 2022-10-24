@@ -39,10 +39,9 @@ const NavBar = () => {
           </Link>
           {user ? (
             <>
-              <p className="text-link ">{user.firstName.toUpperCase()}</p>{" "}
+              <p className="text-link ">{user.firstName.toUpperCase()}</p>
               <button className="no-button" onClick={handleLogout}>
-                {" "}
-                logout
+                [logout]
               </button>
             </>
           ) : (

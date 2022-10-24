@@ -17,7 +17,7 @@ userRouter.post("/", async (req, res, next) => {
       where: { email: email },
     });
     if (existingEmail) {
-      res.status(400).send("Email already exists!!");
+      return res.send("Email already exists!!");
     }
 
     const saltRounds = 10;

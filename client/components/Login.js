@@ -1,13 +1,14 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
+import { setMessageObject } from "../reducers/messageReducer";
 import { setUserObject } from "../reducers/userReducer";
 import loginServices from "../services/loginServices";
 
 const Login = () => {
-  const [message, setMessage] = useState(null);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const message = useSelector((state) => state.messages);
 
   const handleLogin = async (event) => {
     event.preventDefault();
@@ -18,8 +19,7 @@ const Login = () => {
     const response = await loginServices.login(email, password);
 
     if (response.error) {
-      setMessage(response.error);
-      setTimeout(() => setMessage(null), 3000);
+      dispatch(setMessageObject(response.error));
     } else {
       window.localStorage.setItem("loggedinUser", JSON.stringify(response));
       dispatch(setUserObject(response));
