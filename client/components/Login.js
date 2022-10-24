@@ -1,10 +1,13 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
+import { setUserObject } from "../reducers/userReducer";
 import loginServices from "../services/loginServices";
 
 const Login = () => {
   const [message, setMessage] = useState(null);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleLogin = async (event) => {
     event.preventDefault();
@@ -13,13 +16,13 @@ const Login = () => {
     const password = event.target.password.value;
 
     const response = await loginServices.login(email, password);
-    event.target.email.value = "";
-    event.target.password.value = "";
+
     if (response.error) {
       setMessage(response.error);
       setTimeout(() => setMessage(null), 3000);
     } else {
       window.localStorage.setItem("loggedinUser", JSON.stringify(response));
+      dispatch(setUserObject(response));
       navigate("/");
     }
   };

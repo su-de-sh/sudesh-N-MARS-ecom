@@ -3,12 +3,17 @@ import { Link } from "react-router-dom";
 import logo from "../assets/images/download.png";
 import searchIcon from "../assets/images/search-icon.png";
 import cartIcon from "../assets/images/cart.png";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { setUserObject } from "../reducers/userReducer";
 
 const NavBar = () => {
   const user = useSelector((state) => state.users);
-  console.log("user", user);
+  const dispatch = useDispatch();
 
+  const handleLogout = () => {
+    window.localStorage.removeItem("loggedinUser");
+    dispatch(setUserObject(null));
+  };
   return (
     <div className="wrapper">
       <div className="flex split-pair align-center region-tn nav-bar">
@@ -33,7 +38,13 @@ const NavBar = () => {
             <img src={cartIcon} alt="cart-icon" className="cart-icon" />
           </Link>
           {user ? (
-            <p className="text-link ">{user.firstName}</p>
+            <>
+              <p className="text-link ">{user.firstName.toUpperCase()}</p>{" "}
+              <button className="no-button" onClick={handleLogout}>
+                {" "}
+                logout
+              </button>
+            </>
           ) : (
             <>
               <Link to="/login" className="text-link ">
