@@ -24,23 +24,23 @@ jobs:
       - name: build
         run: npm run build
 
-  #     - name: test
-  #       run: npm run test
+      #     - name: test
+      #       run: npm run test
 
-  #     - name: e2e tests
-  #       uses: cypress-io/github-action@v4
-  #       with:
-  #         build: npm run build
-  #         start: npm run start-prod
-  #         wait-on: http://localhost:5000
+      #     - name: e2e tests
+      #       uses: cypress-io/github-action@v4
+      #       with:
+      #         build: npm run build
+      #         start: npm run start-prod
+      #         wait-on: http://localhost:5000
 
-  #     - name: deploy to heroku
-  #       if: ${{ github.event_name == 'push' }}
-  #       uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
-  #       with:
-  #         heroku_api_key: ${{secrets.HEROKU_API_KEY}} #Secret key for heroku api
-  #         heroku_app_name: 'fullstack-pokedex321123' #Must be unique in Heroku
-  #         heroku_email: 'sudesh7443@gmail.com'
+      - name: deploy to heroku
+        if: ${{ github.event_name == 'push' }}
+        uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
+        with:
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}} #Secret key for heroku api
+          heroku_app_name: "n-mars-ecom" #Must be unique in Heroku
+          heroku_email: "sudesh74bex@ioepc.edu.np"
   #         healthcheck: 'https://fullstack-pokedex321123.herokuapp.com/health'
   #         checkstring: 'ok'
   #         rollbackonhealthcheckfailed: true

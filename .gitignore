@@ -7,3 +7,4 @@ coverage/
 .vscode/
 .csv
 tmp
+heroku_api_key.txt
