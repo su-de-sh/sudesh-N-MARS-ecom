@@ -5,6 +5,7 @@ const productRouter = require("./controllers/productRouter");
 const fileUpload = require("express-fileupload");
 const userRouter = require("./controllers/userRouter");
 const loginRouter = require("./controllers/loginRouter");
+const orderRouter = require("./controllers/orderRouter");
 
 const app = express();
 
@@ -16,6 +17,7 @@ app.use(express.static("dist"));
 app.use("/api/products", productRouter);
 app.use("/api/users", userRouter);
 app.use("/api/login", loginRouter);
+app.use("/api/orders", orderRouter);
 
 // sends index.html
 app.use("*", (req, res) => {

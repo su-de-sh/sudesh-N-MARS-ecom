@@ -11,6 +11,11 @@ module.exports = {
         type: DataTypes.TEXT,
         allowNull: false,
       },
+      image_path: {
+        type: DataTypes.TEXT,
+        defaultValue: "no_image",
+        allowNull: false,
+      },
       price: {
         type: DataTypes.INTEGER,
         allowNull: false,
