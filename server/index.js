@@ -6,6 +6,7 @@ const PORT = process.env.PORT || 3001;
 const start = async () => {
   await connectToDatabase();
   app.listen(PORT, () => {
+    //eslint-disable-next-line
     console.log(`Server running onhttp://localhost:${PORT}`);
   });
 };
