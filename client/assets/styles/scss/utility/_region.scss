@@ -35,3 +35,7 @@
     margin: 0.5rem;
   }
 }
+.table-row * {
+  align-items: center;
+  display: flex;
+color: $light-color;}

@@ -27,7 +27,6 @@ const Products = () => {
                 className="add-to-cart-btn"
                 onClick={() => addToCart(product.id)}
               >
-                {" "}
                 Add to cart
               </button>
             </div>
