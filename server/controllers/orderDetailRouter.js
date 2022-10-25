@@ -17,12 +17,10 @@ orderDetailRouter.post("/", async (req, res) => {
   });
 
   if (pendingOrder) {
-    console.log("in if&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
     const order = { productId: req.body.productId, orderId: pendingOrder.id };
     const response = await OrderDetail.create(order);
     res.send(response);
   } else {
-    console.log("in else$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
     const userId = req.user.id;
     const newOrder = await Order.create({ userId });
     const order = { productId: req.body.productId, orderId: newOrder.id };
