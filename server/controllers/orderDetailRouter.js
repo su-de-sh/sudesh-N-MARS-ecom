@@ -21,7 +21,10 @@ orderDetailRouter.get("/cart", async (req, res) => {
       orderId: pendingOrder.id,
     },
     include: [
-      { model: Product, attributes: ["productName", "price", "quantity"] },
+      {
+        model: Product,
+        attributes: ["productName", "imagePath", "price", "quantity"],
+      },
     ],
   });
   res.send(cartItems);
