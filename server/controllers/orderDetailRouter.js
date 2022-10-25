@@ -4,9 +4,27 @@ const orderDetailRouter = require("express").Router();
 
 orderDetailRouter.get("/", async (req, res) => {
   const orders = await OrderDetail.findAll({
-    include: [{ model: Product }],
+    include: [
+      { model: Product, attributes: ["productName", "price", "quantity"] },
+    ],
   });
   res.send(orders);
+});
+orderDetailRouter.get("/cart", async (req, res) => {
+  const pendingOrder = await Order.findOne({
+    where: {
+      status: "pending",
+    },
+  });
+  const cartItems = await OrderDetail.findAll({
+    where: {
+      orderId: pendingOrder.id,
+    },
+    include: [
+      { model: Product, attributes: ["productName", "price", "quantity"] },
+    ],
+  });
+  res.send(cartItems);
 });
 
 orderDetailRouter.post("/", async (req, res) => {
