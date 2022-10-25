@@ -14,7 +14,7 @@ const userExtractor = (req, res, next) => {
   const authorization = req.get("authorization");
   if (authorization && authorization.toLowerCase().startsWith("bearer ")) {
     const decodedToken = jwt.verify(req.token, config.SEKRET);
-    console.log(decodedToken);
+
     if (!decodedToken.id) {
       res.status(401).json({ error: "token missing or invalid" });
     }

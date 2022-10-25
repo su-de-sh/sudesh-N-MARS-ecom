@@ -8,7 +8,7 @@ const Products = () => {
   //retrive all products from redux store
   const products = useSelector((state) => state.products);
   const addToCart = async (productId) => {
-    const response = await orderServices.createOrder(productId);
+    await orderServices.createOrder(productId);
     dispatch(setMessageObject("Added item to cart successfully!!"));
   };
   return (

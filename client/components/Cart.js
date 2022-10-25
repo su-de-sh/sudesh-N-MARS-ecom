@@ -5,10 +5,10 @@ import { initializeCartItems } from "../reducers/cartItemsReducer";
 const Cart = () => {
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cartItems);
-  console.log(cartItems);
+
   useEffect(() => {
     dispatch(initializeCartItems());
-  }, []);
+  }, [dispatch]);
   // const cartItems = [
   //   {
   //     productName: "phone",
@@ -21,11 +21,11 @@ const Cart = () => {
   // ];
 
   const increaseQnty = () => {
-    console.log("increase");
+    // console.log("increase");
   };
 
   const decreaseQnty = () => {
-    console.log("decrease");
+    // console.log("decrease");
   };
 
   return (
