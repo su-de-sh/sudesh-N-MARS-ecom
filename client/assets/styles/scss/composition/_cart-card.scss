@@ -1,0 +1,26 @@
+.cart-card{
+    width: 50rem;
+    height:8rem;
+    margin: 1rem;
+    border:2px solid black;
+    border-radius: 1rem;
+    background-color:$dark-grey;
+ 
+  
+}
+
+.cart-image{
+    width: 8rem;
+    height: 7rem;
+}
+
+.cart-container{
+
+    height: 40rem;
+
+    overflow: scroll;
+   
+    background-color: $primary-color-grey;
+    align-items: center;
+  
+}

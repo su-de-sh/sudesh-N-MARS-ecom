@@ -7,4 +7,10 @@ orderRouter.get("/", async (req, res) => {
   res.send(orders);
 });
 
+orderRouter.post("/", async (req, res) => {
+  const order = { ...req.body };
+  const response = await Order.create(order);
+  res.send(response);
+});
+
 module.exports = orderRouter;
