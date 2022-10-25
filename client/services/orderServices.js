@@ -1,12 +1,19 @@
 import axios from "axios";
-import { useSelector } from "react-redux";
 
-const baseUrl = "/api/orders";
+const baseUrl = "/api/orderDetails";
 
-const createOrder = async (userId) => {
-  const request = await axios.post(baseUrl, { userId });
+const createOrder = async (productId) => {
+  const token = await JSON.parse(window.localStorage.getItem("loggedinUser"))
+    .token;
 
-  return request.data;
+  const config = {
+    headers: {
+      Authorization: `bearer ${token}`,
+    },
+  };
+  const response = await axios.post(baseUrl, { productId }, config);
+
+  return response.data;
 };
 
 export default { createOrder };
