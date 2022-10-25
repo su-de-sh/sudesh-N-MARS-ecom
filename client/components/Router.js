@@ -9,7 +9,7 @@ import Signup from "./Signup";
 const Router = () => {
   return (
     <Routes>
-      {/* <Route path="/" element={<Products />} /> */}
+      <Route path="/" element={<Products />} />
       <Route path="/signup" element={<Signup />} />
       <Route path="/login" element={<Login />} />
       <Route path="/cart" element={<Cart />} />
