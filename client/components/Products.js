@@ -24,7 +24,7 @@ const Products = () => {
                 src={product.imagePath}
                 alt={`$product.productName`}
               />
-              <h3 className="title">{product.productName}</h3>
+              <h3 className="title">{product.productName.slice(0, 20)}</h3>
               <p className="desc">{product.specification.slice(0, 50)}...</p>
               <h6 className="price">Rs.{product.price}</h6>
               <button
