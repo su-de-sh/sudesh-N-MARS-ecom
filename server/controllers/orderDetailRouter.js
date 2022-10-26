@@ -11,23 +11,27 @@ orderDetailRouter.get("/", async (req, res) => {
   res.send(orders);
 });
 orderDetailRouter.get("/cart", async (req, res) => {
-  const pendingOrder = await Order.findOne({
-    where: {
-      status: "pending",
-    },
-  });
-  const cartItems = await OrderDetail.findAll({
-    where: {
-      orderId: pendingOrder.id,
-    },
-    include: [
-      {
-        model: Product,
-        attributes: ["productName", "imagePath", "price", "quantity"],
+  try {
+    const pendingOrder = await Order.findOne({
+      where: {
+        status: "pending",
       },
-    ],
-  });
-  res.send(cartItems);
+    });
+    const cartItems = await OrderDetail.findAll({
+      where: {
+        orderId: pendingOrder.id,
+      },
+      include: [
+        {
+          model: Product,
+          attributes: ["productName", "imagePath", "price", "quantity"],
+        },
+      ],
+    });
+    res.send(cartItems);
+  } catch (err) {
+    res.send(err);
+  }
 });
 
 orderDetailRouter.post("/", async (req, res) => {
