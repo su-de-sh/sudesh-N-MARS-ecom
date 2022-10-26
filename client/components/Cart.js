@@ -28,6 +28,14 @@ const Cart = () => {
     // console.log("decrease");
   };
 
+  if (!cartItems.length) {
+    return (
+      <div className="flex split-center">
+        <h1>NO items in cart</h1>
+      </div>
+    );
+  }
+
   return (
     <div className="wrapper cart-container ">
       <table>
