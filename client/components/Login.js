@@ -25,6 +25,7 @@ const Login = () => {
       window.localStorage.setItem("loggedinUser", JSON.stringify(response));
       dispatch(setUserObject(response));
       dispatch(initializeCartItems());
+      navigate("/");
     }
   };
 
