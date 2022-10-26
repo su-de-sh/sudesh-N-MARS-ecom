@@ -16,7 +16,7 @@ const App = () => {
   useEffect(() => {
     // load products in store form backend
     dispatch(initializeProducts());
-    dispatch(initializeCartItems());
+    if (user) dispatch(initializeCartItems());
     // set logged in user
     dispatch(setUserObject(JSON.parse(user)));
   }, [dispatch, user]);

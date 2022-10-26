@@ -1,15 +1,20 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { addCartItem } from "../reducers/cartItemsReducer";
 import { setMessageObject } from "../reducers/messageReducer";
-import orderServices from "../services/orderServices";
 
 const Products = () => {
   const dispatch = useDispatch();
   //retrive all products from redux store
   const products = useSelector((state) => state.products);
+  const user = useSelector((state) => state.users);
   const addToCart = async (productId) => {
-    await orderServices.createOrder(productId);
-    dispatch(setMessageObject("Added item to cart successfully!!"));
+    if (user) {
+      dispatch(addCartItem(productId));
+      dispatch(setMessageObject("Added item to cart successfully!!"));
+    } else {
+      dispatch(setMessageObject("Login first!!"));
+    }
   };
   return (
     <div className="wrapper ">

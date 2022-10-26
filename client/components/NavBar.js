@@ -1,20 +1,23 @@
 // import toskaLogo from "../assets/images/toskalogo_color.svg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "../assets/images/download.png";
 import searchIcon from "../assets/images/search-icon.png";
 import cartIcon from "../assets/images/cart.png";
 import { useDispatch, useSelector } from "react-redux";
 import { setUserObject } from "../reducers/userReducer";
+import { initializeCartItems } from "../reducers/cartItemsReducer";
 
 const NavBar = () => {
   const user = useSelector((state) => state.users);
   const cartItems = useSelector((state) => state.cartItems);
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleLogout = () => {
     window.localStorage.removeItem("loggedinUser");
     dispatch(setUserObject(null));
+    navigate("/");
   };
   return (
     <div className="wrapper">

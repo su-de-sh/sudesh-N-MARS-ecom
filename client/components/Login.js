@@ -1,6 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
+import { initializeCartItems } from "../reducers/cartItemsReducer";
 import { setMessageObject } from "../reducers/messageReducer";
 import { setUserObject } from "../reducers/userReducer";
 import loginServices from "../services/loginServices";
@@ -23,7 +24,7 @@ const Login = () => {
     } else {
       window.localStorage.setItem("loggedinUser", JSON.stringify(response));
       dispatch(setUserObject(response));
-      navigate("/");
+      dispatch(initializeCartItems());
     }
   };
 

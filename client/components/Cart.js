@@ -1,19 +1,6 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { initializeCartItems } from "../reducers/cartItemsReducer";
+import React from "react";
 
 const Cart = ({ cartItems }) => {
-  // const cartItems = [
-  //   {
-  //     productName: "phone",
-  //     price: 2000,
-  //     quantity: 1,
-  //   },
-  //   { productName: "earphone", price: 900, quantity: 2 },
-  //   { productName: "earphone", price: 900, quantity: 2 },
-  //   { productName: "earphone", price: 900, quantity: 2 },
-  // ];
-
   const increaseQnty = () => {
     // console.log("increase");
   };
