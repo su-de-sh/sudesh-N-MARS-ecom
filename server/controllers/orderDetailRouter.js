@@ -19,6 +19,7 @@ orderDetailRouter.get("/cart", async (req, res) => {
     const pendingOrder = await Order.findOne({
       where: {
         status: "pending",
+        userId: req.user.id,
       },
     });
     const cartItems = await OrderDetail.findAll({
@@ -43,6 +44,7 @@ orderDetailRouter.post("/", async (req, res) => {
     const pendingOrder = await Order.findOne({
       where: {
         status: "pending",
+        userId: req.user.id,
       },
     });
 

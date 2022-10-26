@@ -1,5 +1,5 @@
 // import toskaLogo from "../assets/images/toskalogo_color.svg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "../assets/images/download.png";
 import searchIcon from "../assets/images/search-icon.png";
 import cartIcon from "../assets/images/cart.png";
@@ -8,11 +8,15 @@ import { setUserObject } from "../reducers/userReducer";
 
 const NavBar = () => {
   const user = useSelector((state) => state.users);
+  const cartItems = useSelector((state) => state.cartItems);
+
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleLogout = () => {
     window.localStorage.removeItem("loggedinUser");
     dispatch(setUserObject(null));
+    navigate("/");
   };
   return (
     <div className="wrapper">
@@ -38,9 +42,14 @@ const NavBar = () => {
           />
         </div>
 
-        <div className="flex split-pair align-center">
-          <Link to="/cart">
-            <img src={cartIcon} alt="cart-icon" className="cart-icon" />
+        <div className="flex split-pair align-center ">
+          <Link to="/cart" className="flex split-pair align-center">
+            {user ? <h5>({cartItems.length})</h5> : <h5>(0)</h5>}
+            <img
+              src={cartIcon}
+              alt="cart-icon"
+              className="cart-icon margin-sm"
+            />
           </Link>
           {user ? (
             <>
