@@ -6,13 +6,13 @@ import Products from "./Products";
 import Signup from "./Signup";
 // import MessageView from "./MessageView";
 
-const Router = () => {
+const Router = ({ cartItems }) => {
   return (
     <Routes>
       <Route path="/" element={<Products />} />
       <Route path="/signup" element={<Signup />} />
       <Route path="/login" element={<Login />} />
-      <Route path="/cart" element={<Cart />} />
+      <Route path="/cart" element={<Cart cartItems={cartItems} />} />
     </Routes>
   );
 };

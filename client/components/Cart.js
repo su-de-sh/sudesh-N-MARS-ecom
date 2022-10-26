@@ -2,13 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { initializeCartItems } from "../reducers/cartItemsReducer";
 
-const Cart = () => {
-  const dispatch = useDispatch();
-  const cartItems = useSelector((state) => state.cartItems);
-
-  useEffect(() => {
-    dispatch(initializeCartItems());
-  }, [dispatch]);
+const Cart = ({ cartItems }) => {
   // const cartItems = [
   //   {
   //     productName: "phone",

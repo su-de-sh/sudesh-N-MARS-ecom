@@ -8,6 +8,8 @@ import { setUserObject } from "../reducers/userReducer";
 
 const NavBar = () => {
   const user = useSelector((state) => state.users);
+  const cartItems = useSelector((state) => state.cartItems);
+
   const dispatch = useDispatch();
 
   const handleLogout = () => {
@@ -38,9 +40,14 @@ const NavBar = () => {
           />
         </div>
 
-        <div className="flex split-pair align-center">
-          <Link to="/cart">
-            <img src={cartIcon} alt="cart-icon" className="cart-icon" />
+        <div className="flex split-pair align-center ">
+          <Link to="/cart" className="flex split-pair align-center">
+            {user ? <h5>({cartItems.length})</h5> : <h5>(0)</h5>}
+            <img
+              src={cartIcon}
+              alt="cart-icon"
+              className="cart-icon margin-sm"
+            />
           </Link>
           {user ? (
             <>
