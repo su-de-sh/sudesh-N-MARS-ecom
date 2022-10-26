@@ -8,6 +8,8 @@ const Products = () => {
   //retrive all products from redux store
   const products = useSelector((state) => state.products);
   const user = useSelector((state) => state.users);
+  const message = useSelector((state) => state.messages);
+
   const addToCart = async (productId) => {
     if (user) {
       dispatch(addCartItem(productId));
@@ -18,8 +20,9 @@ const Products = () => {
   };
   return (
     <div className="wrapper ">
-      <div className=" flex split-center"> All Products</div>
+      <div className=" flex split-center h4"> All Products</div>
 
+      {message ? <div className=" flex split-center ">{message}</div> : null}
       <div className="gallery">
         {products.map((product, index) => {
           return (
