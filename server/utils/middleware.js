@@ -18,6 +18,7 @@ const userExtractor = (req, res, next) => {
     if (!decodedToken.id) {
       res.status(401).json({ error: "token missing or invalid" });
     }
+
     req.user = decodedToken;
   }
   next();
