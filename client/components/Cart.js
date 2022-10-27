@@ -18,43 +18,72 @@ const Cart = ({ cartItems }) => {
   }
 
   return (
-    <div className="wrapper cart-container ">
-      <table>
-        <tbody>
-          {cartItems.map((item, index) => {
-            return (
-              <tr key={index} className=" cart-card flex split-pair table-row ">
-                <td>
-                  <img
-                    className="cart-image"
-                    src={item.product.imagePath}
-                    alt={item.product.productName}
-                  />
-                </td>
-                <td>{item.product.productName}</td>
-                <td>Rs. {item.product.price}</td>
-                <td>
-                  <button
-                    className="no-button no-button-font-sm"
-                    onClick={decreaseQnty}
+    <div className="wrapper ">
+      <div className=" flex split-center h4"> Cart Items</div>
+      <div className="flex cart-gallery ">
+        <div>
+          <table>
+            <tbody>
+              {cartItems.map((item, index) => {
+                return (
+                  <tr
+                    key={index}
+                    className=" cart-card flex split-pair table-row "
                   >
-                    {" "}
-                    -{" "}
-                  </button>
-                  {item.quantity}
-                  <button
-                    className="no-button no-button-font-sm"
-                    onClick={increaseQnty}
-                  >
-                    {" "}
-                    +{" "}
-                  </button>
-                </td>
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
+                    <td>
+                      <img
+                        className="cart-image"
+                        src={item.product.imagePath}
+                        alt={item.product.productName}
+                      />
+                    </td>
+                    <td>{item.product.productName}</td>
+                    <td>Rs. {item.product.price}</td>
+                    <td>
+                      <button
+                        className="no-button no-button-font-sm"
+                        onClick={decreaseQnty}
+                      >
+                        {" "}
+                        -{" "}
+                      </button>
+                      {item.quantity}
+                      <button
+                        className="no-button no-button-font-sm"
+                        onClick={increaseQnty}
+                      >
+                        {" "}
+                        +{" "}
+                      </button>
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+        <div className="order-summary">
+          <div className="order-summary-title">Order Summary</div>
+          <div className="line-1"></div>
+          <div className="margin-md">
+            <div className="flex split-pair light-color">
+              <div>Subtotal({cartItems.length})</div>
+              <div>Rs. 20000</div>
+            </div>
+            <div className="flex split-pair light-color">
+              <div>Shipping fee</div>
+              <div>Rs. 200</div>
+            </div>
+            <div className="line-1"></div>
+            <div className="flex split-pair light-color">
+              <div>Total</div>
+              <div>Rs. 2200</div>
+            </div>
+
+            <button className="checkout-button ">Checkout</button>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
