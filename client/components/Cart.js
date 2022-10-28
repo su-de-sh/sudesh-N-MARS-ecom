@@ -1,6 +1,9 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const Cart = ({ cartItems }) => {
+  const navigate = useNavigate();
+
   const increaseQnty = () => {
     // console.log("increase");
   };
@@ -9,7 +12,9 @@ const Cart = ({ cartItems }) => {
     // console.log("decrease");
   };
 
-  const checkOut = () => {};
+  const checkOut = () => {
+    navigate("/checkout");
+  };
 
   if (!cartItems.length) {
     return (
@@ -45,7 +50,12 @@ const Cart = ({ cartItems }) => {
                         alt={item.product.productName}
                       />
                     </td>
-                    <td>{item.product.productName}</td>
+                    <td style={{ display: "block" }}>
+                      {item.product.productName}
+                      <h5 style={{ color: "red" }}>
+                        *Only {item.product.quantity} in stock
+                      </h5>
+                    </td>
                     <td>Rs. {item.product.price}</td>
                     <td>
                       <button
@@ -88,7 +98,7 @@ const Cart = ({ cartItems }) => {
               <div>Rs. {total - shippingFee}</div>
             </div>
 
-            <button className="checkout-button " onClick={checkOut}>
+            <button className="checkout-cart-button " onClick={checkOut}>
               Checkout
             </button>
           </div>

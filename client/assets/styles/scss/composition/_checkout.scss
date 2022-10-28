@@ -1,0 +1,19 @@
+.checkout-gallery{
+    margin:0;
+    
+    width: 100%;
+    // justify-content: center;
+    // align-items: center;
+    
+    background-color: $primary-color-grey;
+}
+
+.checkout-button{
+   width: 41rem;
+   height: 4rem;
+    margin: 10px;
+    background-color: $dark-color;
+    color: $light-color;
+    border-radius: 5px;
+
+}
