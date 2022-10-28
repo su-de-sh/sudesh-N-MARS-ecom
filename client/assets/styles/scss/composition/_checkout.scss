@@ -16,4 +16,8 @@
     color: $light-color;
     border-radius: 10px;
 
+    &:hover{
+        background: orangered;
+        color: $light-color;
+    }
 }
