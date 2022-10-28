@@ -70,6 +70,11 @@
     border-bottom-left-radius:20px ;
     cursor: pointer;
 
+    &:hover{
+        background: orangered;
+        color: $light-color;
+    }
+
 }
 
 @media(max-width:1000px){

@@ -14,7 +14,7 @@ const Checkout = () => {
       <div className=" flex split-center h4"> Checkout</div>
       <div className="flex checkout-gallery ">
         <div>
-          <button className="checkout-button">+ Add Shipping address</button>
+          <button className="shipping-button">+ Add Shipping address</button>
           <table>
             <tbody>
               {cartItems.map((item, index) => {
