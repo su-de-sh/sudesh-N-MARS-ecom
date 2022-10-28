@@ -17,6 +17,12 @@ const Cart = ({ cartItems }) => {
     );
   }
 
+  const total = cartItems.reduce((a, b) => {
+    return (a = a + b.product.price);
+  }, 0);
+
+  const shippingFee = 100;
+
   return (
     <div className="wrapper ">
       <div className=" flex split-center h4"> Cart Items</div>
@@ -68,16 +74,16 @@ const Cart = ({ cartItems }) => {
           <div className="margin-md">
             <div className="flex split-pair light-color">
               <div>Subtotal({cartItems.length})</div>
-              <div>Rs. 20000</div>
+              <div>Rs. {total}</div>
             </div>
             <div className="flex split-pair light-color">
               <div>Shipping fee</div>
-              <div>Rs. 200</div>
+              <div>Rs. {shippingFee}</div>
             </div>
             <div className="line-1"></div>
             <div className="flex split-pair light-color">
               <div>Total</div>
-              <div>Rs. 2200</div>
+              <div>Rs. {total - shippingFee}</div>
             </div>
 
             <button className="checkout-button ">Checkout</button>
