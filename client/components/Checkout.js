@@ -1,5 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 const Checkout = () => {
   const cartItems = useSelector((state) => state.cartItems);
@@ -14,7 +15,13 @@ const Checkout = () => {
       <div className=" flex split-center h4"> Checkout</div>
       <div className="flex checkout-gallery ">
         <div>
-          <button className="shipping-button">+ Add Shipping address</button>
+          <Link to="/shipping ">
+            {" "}
+            <button className="shipping-button">
+              + Add Shipping address
+            </button>{" "}
+          </Link>
+
           <table>
             <tbody>
               {cartItems.map((item, index) => {

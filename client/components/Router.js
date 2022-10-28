@@ -4,6 +4,7 @@ import Checkout from "./Checkout";
 import Login from "./Login";
 
 import Products from "./Products";
+import ShippingAddress from "./ShippingAddress";
 import Signup from "./Signup";
 // import MessageView from "./MessageView";
 
@@ -15,6 +16,7 @@ const Router = ({ cartItems }) => {
       <Route path="/login" element={<Login />} />
       <Route path="/cart" element={<Cart cartItems={cartItems} />} />
       <Route path="/checkout" element={<Checkout />} />
+      <Route path="/shipping-address" element={<ShippingAddress />} />
     </Routes>
   );
 };
