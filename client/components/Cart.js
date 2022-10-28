@@ -1,5 +1,5 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Cart = ({ cartItems }) => {
   const navigate = useNavigate();
@@ -10,10 +10,6 @@ const Cart = ({ cartItems }) => {
 
   const decreaseQnty = () => {
     // console.log("decrease");
-  };
-
-  const checkOut = () => {
-    navigate("/checkout");
   };
 
   if (!cartItems.length) {
@@ -98,9 +94,9 @@ const Cart = ({ cartItems }) => {
               <div>Rs. {total - shippingFee}</div>
             </div>
 
-            <button className="checkout-cart-button " onClick={checkOut}>
-              Checkout
-            </button>
+            <Link to="/checkout">
+              <button className="checkout-cart-button ">Checkout</button>
+            </Link>
           </div>
         </div>
       </div>
