@@ -4,7 +4,12 @@ import { Link } from "react-router-dom";
 
 const Checkout = () => {
   const cartItems = useSelector((state) => state.cartItems);
+  const user = useSelector((state) => state.users);
 
+  if (!user) {
+    return null;
+  }
+  const [name, address, phone] = user.shippingAddress.split(",");
   const total = cartItems.reduce((a, b) => {
     return (a = a + b.product.price * b.quantity);
   }, 0);
@@ -15,12 +20,24 @@ const Checkout = () => {
       <div className=" flex split-center h4"> Checkout</div>
       <div className="flex checkout-gallery ">
         <div>
-          <Link to="/shipping ">
-            {" "}
-            <button className="shipping-button">
-              + Add Shipping address
-            </button>{" "}
-          </Link>
+          {!user ? (
+            <Link to="/shipping ">
+              {" "}
+              <button className="shipping-button">
+                + Add Shipping address
+              </button>{" "}
+            </Link>
+          ) : (
+            <div className="dark-container">
+              <div>Shipping address:</div>
+              <div className="line-1"></div>
+              <div>
+                <div>Name:{name}</div>
+                <div>Address:{address}</div>
+                <div>Contact:{phone}</div>
+              </div>
+            </div>
+          )}
 
           <table>
             <tbody>
@@ -66,9 +83,9 @@ const Checkout = () => {
 
             <div className="light-color">
               <div>Deliver to:</div>
-              <div>Name:Sudesh Mate</div>
-              <div>Address:Khorsane morang</div>
-              <div>Contact:9808563636</div>
+              <div>Name:{name}</div>
+              <div>Address:{address}</div>
+              <div>Contact:{phone}</div>
             </div>
 
             <div className="line-1"></div>
