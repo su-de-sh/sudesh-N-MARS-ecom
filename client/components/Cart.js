@@ -9,6 +9,8 @@ const Cart = ({ cartItems }) => {
     // console.log("decrease");
   };
 
+  const checkOut = () => {};
+
   if (!cartItems.length) {
     return (
       <div className="flex split-center">
@@ -86,7 +88,9 @@ const Cart = ({ cartItems }) => {
               <div>Rs. {total - shippingFee}</div>
             </div>
 
-            <button className="checkout-button ">Checkout</button>
+            <button className="checkout-button " onClick={checkOut}>
+              Checkout
+            </button>
           </div>
         </div>
       </div>

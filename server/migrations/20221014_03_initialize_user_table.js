@@ -21,6 +21,10 @@ module.exports = {
       },
       password_hash: {
         type: DataTypes.STRING,
+        allowNull: false,
+      },
+      shipping_address: {
+        type: DataTypes.STRING,
       },
     });
   },
