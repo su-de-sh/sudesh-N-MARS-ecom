@@ -7,6 +7,11 @@ userRouter.get("/", async (req, res) => {
 
   res.json(users);
 });
+userRouter.get("/:id", async (req, res) => {
+  const user = await User.findOne({ where: { id: req.params.id } });
+
+  res.json(user);
+});
 
 userRouter.post("/", async (req, res, next) => {
   try {
@@ -51,7 +56,7 @@ userRouter.put("/shipping", async (req, res, next) => {
       { where: { id: req.user.id } }
     );
 
-    res.send(response);
+    res.send(req.user);
   } catch (error) {
     next(error);
   }

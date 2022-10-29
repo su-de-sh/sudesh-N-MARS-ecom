@@ -1,8 +1,9 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
-const Cart = ({ cartItems }) => {
-  const navigate = useNavigate();
+const Cart = () => {
+  const cartItems = useSelector((state) => state.cartItems);
 
   const increaseQnty = () => {
     // console.log("increase");

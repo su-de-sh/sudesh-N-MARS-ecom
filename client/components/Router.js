@@ -8,13 +8,13 @@ import ShippingAddress from "./ShippingAddress";
 import Signup from "./Signup";
 // import MessageView from "./MessageView";
 
-const Router = ({ cartItems }) => {
+const Router = () => {
   return (
     <Routes>
       <Route path="/" element={<Products />} />
       <Route path="/signup" element={<Signup />} />
       <Route path="/login" element={<Login />} />
-      <Route path="/cart" element={<Cart cartItems={cartItems} />} />
+      <Route path="/cart" element={<Cart />} />
       <Route path="/checkout" element={<Checkout />} />
       <Route path="/shipping-address" element={<ShippingAddress />} />
     </Routes>

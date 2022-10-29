@@ -1,11 +1,14 @@
 import React from "react";
-import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+
+import { setShippingAddress } from "../reducers/userReducer";
 import shippingServices from "../services/shippingServices";
+import { useNavigate } from "react-router-dom";
 
 const ShippingAddress = () => {
-  const message = useSelector((state) => state.messages);
   const navigate = useNavigate();
+  const message = useSelector((state) => state.messages);
+  const dispatch = useDispatch();
 
   const addShippingAddress = async (event) => {
     event.preventDefault();
@@ -13,7 +16,9 @@ const ShippingAddress = () => {
     const address = event.target.address.value;
     const phone = event.target.phnumber.value;
     const shippingAddress = `${name},${address},${phone}`;
-    await shippingServices.add(shippingAddress);
+    // const response = await shippingServices.add(shippingAddress);
+    // console.log(response);
+    dispatch(setShippingAddress(shippingAddress));
     navigate("/checkout");
   };
 

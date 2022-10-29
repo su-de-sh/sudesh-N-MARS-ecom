@@ -25,7 +25,7 @@ const App = () => {
     <>
       <NavBar cartItems={cartItems} />
 
-      <Router cartItems={cartItems} />
+      <Router />
     </>
   );
 };
