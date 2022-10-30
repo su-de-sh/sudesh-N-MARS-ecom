@@ -15,7 +15,7 @@ const ShippingAddress = () => {
     const name = event.target.name.value;
     const address = event.target.address.value;
     const phone = event.target.phnumber.value;
-    const shippingAddress = `${name},${address},${phone}`;
+    const shippingAddress = `${name}~${address}~${phone}`;
     // const response = await shippingServices.add(shippingAddress);
     // console.log(response);
     dispatch(setShippingAddress(shippingAddress));

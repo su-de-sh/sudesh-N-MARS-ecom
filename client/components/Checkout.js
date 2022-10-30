@@ -87,7 +87,7 @@ const Checkout = () => {
         </div>
       );
     } else {
-      const [name, address, phone] = user.shippingAddress.split(",");
+      const [name, address, phone] = user.shippingAddress.split("~");
       return (
         <div className="wrapper ">
           <div className=" flex split-center h4"> Checkout</div>
