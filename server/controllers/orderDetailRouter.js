@@ -6,7 +6,10 @@ orderDetailRouter.get("/", async (req, res) => {
   try {
     const orders = await OrderDetail.findAll({
       include: [
-        { model: Product, attributes: ["productName", "price", "quantity"] },
+        {
+          model: Product,
+          attributes: ["productName", "price", "quantity", "imagePath"],
+        },
       ],
     });
     res.send(orders);
@@ -14,14 +17,29 @@ orderDetailRouter.get("/", async (req, res) => {
     res.send(err);
   }
 });
+// orderDetailRouter.get("/:id", async (req, res) => {
+//   const order = OrderDetail.findOne({
+//     where: { id: req.params.id },
+//     include: [
+//       { model: Product, attributes: ["productName", "price", "quantity"] },
+//     ],
+//   });
+//   res.send(order);
+// });
+
 orderDetailRouter.get("/cart", async (req, res) => {
   try {
+    console.log("in order details");
     const pendingOrder = await Order.findOne({
       where: {
         status: "pending",
         userId: req.user.id,
       },
     });
+    if (!pendingOrder) {
+      return res.send([]);
+    }
+    console.log(pendingOrder, "pending order");
     const cartItems = await OrderDetail.findAll({
       where: {
         orderId: pendingOrder.id,
@@ -33,7 +51,12 @@ orderDetailRouter.get("/cart", async (req, res) => {
         },
       ],
     });
-    res.send(cartItems);
+    console.log(cartItems, "cartItems");
+    if (cartItems.length) {
+      res.send(cartItems);
+    } else {
+      res.send([]);
+    }
   } catch (err) {
     res.send(err);
   }

@@ -1,6 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
 import orderServices from "../services/orderServices";
-import cartItemsServices from "../services/orderServices";
 
 const cartItemsSlice = createSlice({
   name: "cartItems",
@@ -11,22 +10,32 @@ const cartItemsSlice = createSlice({
     },
     addItem(state, action) {
       state.push(action.payload);
+
+      // return [...state, action.payload];
     },
   },
 });
-export default cartItemsSlice.reducer;
 
 export const initializeCartItems = () => {
   return async (dispatch) => {
-    const cartItems = await cartItemsServices.getCartItems();
+    const cartItems = await orderServices.getCartItems();
+
     dispatch(setItems(cartItems));
   };
 };
 export const addCartItem = (productId) => {
   return async (dispatch) => {
     const order = await orderServices.createOrder(productId);
-    dispatch(addItem(order));
+    const products = await orderServices.getAll();
+
+    const addedItem = products.find(
+      (product) => product.productId === order.productId
+    );
+    console.log(addedItem, "additem");
+
+    dispatch(addItem(addedItem));
   };
 };
 
 export const { setItems, addItem } = cartItemsSlice.actions;
+export default cartItemsSlice.reducer;
