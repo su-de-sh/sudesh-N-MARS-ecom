@@ -1,5 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import { addCartItem } from "../reducers/cartItemsReducer";
 import { setMessageObject } from "../reducers/messageReducer";
 
@@ -25,22 +26,25 @@ const Products = () => {
       <div className="gallery">
         {products.map((product, index) => {
           return (
-            <div key={index} className="content">
-              <img
-                className="product-img"
-                src={product.imagePath}
-                alt={`$product.productName`}
-              />
-              <h3 className="title">{product.productName.slice(0, 20)}</h3>
-              <p className="desc">{product.specification.slice(0, 50)}...</p>
-              <h6 className="price">Rs.{product.price}</h6>
-              <button
-                className="add-to-cart-btn"
-                onClick={() => addToCart(product.id)}
-              >
-                Add to cart
-              </button>
-            </div>
+            <Link key={index} to={`/product/${product.id}`} className="content">
+              {" "}
+              <div>
+                <img
+                  className="product-img"
+                  src={product.imagePath}
+                  alt={`$product.productName`}
+                />
+                <h3 className="title">{product.productName.slice(0, 20)}</h3>
+                <p className="desc">{product.specification.slice(0, 50)}...</p>
+                <h6 className="price">Rs.{product.price}</h6>
+                <button
+                  className="add-to-cart-btn"
+                  onClick={() => addToCart(product.id)}
+                >
+                  Add to cart
+                </button>
+              </div>
+            </Link>
           );
         })}
       </div>
