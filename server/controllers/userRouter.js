@@ -49,7 +49,7 @@ userRouter.post("/", async (req, res, next) => {
 
 userRouter.put("/shipping", async (req, res, next) => {
   try {
-    const response = await User.update(
+    await User.update(
       {
         shippingAddress: req.body.shippingAddress,
       },

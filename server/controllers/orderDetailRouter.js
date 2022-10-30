@@ -29,7 +29,6 @@ orderDetailRouter.get("/", async (req, res) => {
 
 orderDetailRouter.get("/cart", async (req, res) => {
   try {
-    console.log("in order details");
     const pendingOrder = await Order.findOne({
       where: {
         status: "pending",
@@ -39,7 +38,7 @@ orderDetailRouter.get("/cart", async (req, res) => {
     if (!pendingOrder) {
       return res.send([]);
     }
-    console.log(pendingOrder, "pending order");
+
     const cartItems = await OrderDetail.findAll({
       where: {
         orderId: pendingOrder.id,
@@ -51,7 +50,7 @@ orderDetailRouter.get("/cart", async (req, res) => {
         },
       ],
     });
-    console.log(cartItems, "cartItems");
+
     if (cartItems.length) {
       res.send(cartItems);
     } else {

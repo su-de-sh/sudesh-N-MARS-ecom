@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { setShippingAddress } from "../reducers/userReducer";
-import shippingServices from "../services/shippingServices";
+
 import { useNavigate } from "react-router-dom";
 
 const ShippingAddress = () => {

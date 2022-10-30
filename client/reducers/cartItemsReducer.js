@@ -31,7 +31,6 @@ export const addCartItem = (productId) => {
     const addedItem = products.find(
       (product) => product.productId === order.productId
     );
-    console.log(addedItem, "additem");
 
     dispatch(addItem(addedItem));
   };

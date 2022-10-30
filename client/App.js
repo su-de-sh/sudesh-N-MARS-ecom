@@ -12,7 +12,6 @@ const App = () => {
   const dispatch = useDispatch();
   const user = window.localStorage.getItem("loggedinUser");
   const cartItems = useSelector((state) => state.cartItems);
-  console.log(cartItems);
 
   useEffect(() => {
     // load products in store form backend

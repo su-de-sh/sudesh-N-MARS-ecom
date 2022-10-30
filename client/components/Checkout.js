@@ -6,7 +6,6 @@ import { Link } from "react-router-dom";
 const Checkout = () => {
   const cartItems = useSelector((state) => state.cartItems);
   const user = useSelector((state) => state.users);
-  console.log(user, "user");
 
   if (!user && !cartItems) {
     return null;
