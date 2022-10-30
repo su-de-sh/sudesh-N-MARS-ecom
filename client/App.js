@@ -12,11 +12,13 @@ const App = () => {
   const dispatch = useDispatch();
   const user = window.localStorage.getItem("loggedinUser");
   const cartItems = useSelector((state) => state.cartItems);
-
+  console.log(user);
   useEffect(() => {
     // load products in store form backend
+    console.log("here in app.js");
     dispatch(initializeProducts());
     if (user) dispatch(initializeCartItems());
+
     // set logged in user
     dispatch(setUserObject(JSON.parse(user)));
   }, [dispatch, user]);

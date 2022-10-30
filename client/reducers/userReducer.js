@@ -37,6 +37,7 @@ export const setShippingAddress = (shippingAddress) => {
     const updatedContent = await signUpServices.getOne(updatedUser.id);
     // console.log(updatedContent);
     dispatch(setUserShippingAddress(updatedContent));
+    window.localStorage.setItem("loggedinUser", JSON.stringify(updatedContent));
   };
 };
 export const { setUsers, setUserShippingAddress } = userSlice.actions;

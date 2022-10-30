@@ -7,7 +7,7 @@ const Checkout = () => {
   const cartItems = useSelector((state) => state.cartItems);
   const user = useSelector((state) => state.users);
 
-  if (!user && !cartItems) {
+  if (!user || !cartItems) {
     return null;
   }
   // if (user.shippingAddress) {
@@ -71,7 +71,7 @@ const Checkout = () => {
                 </div>
                 <div className="flex split-pair light-color">
                   <div>Total</div>
-                  <div>Rs. {total - shippingFee}</div>
+                  <div>Rs. {total + shippingFee}</div>
                 </div>
                 <div className="line-1"></div>
                 <div className="light-color">
