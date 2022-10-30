@@ -10,9 +10,9 @@ const orderDetailRouter = require("./controllers/orderDetailRouter");
 const { tokenExtractor, userExtractor } = require("./utils/middleware");
 
 const app = express();
+app.use(cors());
 
 app.use(fileUpload({ useTempFiles: true }));
-app.use(cors());
 app.use(express.json());
 app.use(express.static("dist"));
 

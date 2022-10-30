@@ -15,7 +15,7 @@ Order.init(
       references: { model: "users", key: "id" },
     },
     status: {
-      type: DataTypes.ENUM("pending", "shipped", "delivered", "completed"),
+      type: DataTypes.STRING,
       defaultValue: "pending",
     },
   },

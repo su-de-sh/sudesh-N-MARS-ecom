@@ -1,6 +1,10 @@
 import React from "react";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
-const Cart = ({ cartItems }) => {
+const Cart = () => {
+  const cartItems = useSelector((state) => state.cartItems);
+
   const increaseQnty = () => {
     // console.log("increase");
   };
@@ -43,7 +47,12 @@ const Cart = ({ cartItems }) => {
                         alt={item.product.productName}
                       />
                     </td>
-                    <td>{item.product.productName}</td>
+                    <td style={{ display: "block" }}>
+                      {item.product.productName}
+                      <h5 style={{ color: "red" }}>
+                        *Only {item.product.quantity} in stock
+                      </h5>
+                    </td>
                     <td>Rs. {item.product.price}</td>
                     <td>
                       <button
@@ -86,7 +95,9 @@ const Cart = ({ cartItems }) => {
               <div>Rs. {total - shippingFee}</div>
             </div>
 
-            <button className="checkout-button ">Checkout</button>
+            <Link to="/checkout">
+              <button className="checkout-cart-button ">Checkout</button>
+            </Link>
           </div>
         </div>
       </div>

@@ -23,6 +23,10 @@ User.init(
     },
     passwordHash: {
       type: DataTypes.STRING,
+      allowNull: false,
+    },
+    shippingAddress: {
+      type: DataTypes.STRING,
     },
   },
   {

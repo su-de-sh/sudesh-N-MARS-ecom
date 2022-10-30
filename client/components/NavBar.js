@@ -5,6 +5,7 @@ import searchIcon from "../assets/images/search-icon.png";
 import cartIcon from "../assets/images/cart.png";
 import { useDispatch, useSelector } from "react-redux";
 import { setUserObject } from "../reducers/userReducer";
+import { setItems } from "../reducers/cartItemsReducer";
 
 const NavBar = () => {
   const user = useSelector((state) => state.users);
@@ -16,6 +17,7 @@ const NavBar = () => {
   const handleLogout = () => {
     window.localStorage.removeItem("loggedinUser");
     dispatch(setUserObject(null));
+    dispatch(setItems([]));
     navigate("/");
   };
   return (
@@ -44,7 +46,7 @@ const NavBar = () => {
 
         <div className="flex split-pair align-center ">
           <Link to="/cart" className="flex split-pair align-center">
-            {user ? <h5>({cartItems.length})</h5> : <h5>(0)</h5>}
+            {user ? <h5>({cartItems.length || 0})</h5> : <h5>(0)</h5>}
             <img
               src={cartIcon}
               alt="cart-icon"

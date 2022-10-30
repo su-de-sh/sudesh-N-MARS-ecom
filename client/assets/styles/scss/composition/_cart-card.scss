@@ -47,11 +47,12 @@
 
 
 .order-summary{
-    width: 40rem;
-    height: 20rem;
+    width: 100%;
+    height: 100%;
     margin: 1rem;
     border:2px solid black;
     border-radius: 1rem;
+    padding:1rem;
     background-color:$dark-grey;
     
     &-title{
@@ -71,11 +72,11 @@
 }
 
 
-.checkout-button{
+.checkout-cart-button{
     text-align: center;
     font-size: 24px;
     color:$dark-color;
-    background: $light-color;
+    background:orangered;
     width: 100%;
     padding: 0.5rem;
     border:0;

@@ -7,6 +7,11 @@ userRouter.get("/", async (req, res) => {
 
   res.json(users);
 });
+userRouter.get("/:id", async (req, res) => {
+  const user = await User.findOne({ where: { id: req.params.id } });
+
+  res.json(user);
+});
 
 userRouter.post("/", async (req, res, next) => {
   try {
@@ -37,6 +42,21 @@ userRouter.post("/", async (req, res, next) => {
     const savedUser = await User.create(user);
 
     res.status(201).json(savedUser);
+  } catch (error) {
+    next(error);
+  }
+});
+
+userRouter.put("/shipping", async (req, res, next) => {
+  try {
+    await User.update(
+      {
+        shippingAddress: req.body.shippingAddress,
+      },
+      { where: { id: req.user.id } }
+    );
+
+    res.send(req.user);
   } catch (error) {
     next(error);
   }

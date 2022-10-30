@@ -6,12 +6,14 @@
   border: 1px solid $primary-color;
   text-decoration: none;
   width: 10rem;
- 
+  border-radius: 10px;
   
   font-size: $h5;
-  &:hover {
-    background-color: $dark-color;
-  }
+
+  &:hover{
+    background: orangered;
+    color: $light-color;
+}
 }
 
 .secondary-button {

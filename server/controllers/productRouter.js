@@ -19,6 +19,14 @@ productRouter.get("/", async (req, res) => {
 
   res.json(products);
 });
+productRouter.get("/:id", async (req, res) => {
+  const product = await Product.findOne({
+    where: { id: req.params.id },
+    include: [{ model: Category }, { model: Brand }],
+  });
+
+  res.json(product);
+});
 
 productRouter.post("/", async (req, res) => {
   const file = req.files.photo;
