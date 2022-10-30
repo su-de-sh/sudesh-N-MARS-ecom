@@ -92,7 +92,7 @@ const Cart = () => {
             <div className="line-1"></div>
             <div className="flex split-pair light-color">
               <div>Total</div>
-              <div>Rs. {total - shippingFee}</div>
+              <div>Rs. {total + shippingFee}</div>
             </div>
 
             <Link to="/checkout">

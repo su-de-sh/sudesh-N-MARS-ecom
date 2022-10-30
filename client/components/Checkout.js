@@ -141,7 +141,7 @@ const Checkout = () => {
                 </div>
                 <div className="flex split-pair light-color">
                   <div>Total</div>
-                  <div>Rs. {total - shippingFee}</div>
+                  <div>Rs. {total + shippingFee}</div>
                 </div>
                 <div className="line-1"></div>
 
