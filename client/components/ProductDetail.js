@@ -4,7 +4,6 @@ import { addCartItem } from "../reducers/cartItemsReducer";
 import { setMessageObject } from "../reducers/messageReducer";
 
 const ProductDetail = ({ productDetail }) => {
-  console.log("product detail", productDetail);
   const dispatch = useDispatch();
   const user = useSelector((state) => state.users);
   const message = useSelector((state) => state.messages);
