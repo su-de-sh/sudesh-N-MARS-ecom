@@ -51,11 +51,7 @@ orderDetailRouter.get("/cart", async (req, res) => {
       ],
     });
 
-    if (cartItems.length) {
-      res.send(cartItems);
-    } else {
-      res.send([]);
-    }
+    res.send(cartItems);
   } catch (err) {
     res.send(err);
   }

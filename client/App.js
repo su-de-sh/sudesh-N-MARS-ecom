@@ -7,15 +7,17 @@ import Router from "./components/Router";
 import { initializeProducts } from "./reducers/productReducer";
 import { setUserObject } from "./reducers/userReducer";
 import { initializeCartItems } from "./reducers/cartItemsReducer";
+import { useMatch } from "react-router-dom";
 
 const App = () => {
   const dispatch = useDispatch();
   const user = window.localStorage.getItem("loggedinUser");
   const cartItems = useSelector((state) => state.cartItems);
-  console.log(user);
+  const products = useSelector((state) => state.products);
+
   useEffect(() => {
     // load products in store form backend
-    console.log("here in app.js");
+
     dispatch(initializeProducts());
     if (user) dispatch(initializeCartItems());
 
@@ -23,11 +25,19 @@ const App = () => {
     dispatch(setUserObject(JSON.parse(user)));
   }, [dispatch, user]);
 
+  const matchProduct = useMatch("/product/:id");
+  // console.log(matchProduct);
+  const productDetail = matchProduct
+    ? products.find((prod) => {
+        return prod.id === Number(matchProduct.params.id);
+      })
+    : null;
+
   return (
     <>
       <NavBar cartItems={cartItems} />
 
-      <Router />
+      <Router products={products} productDetail={productDetail} />
     </>
   );
 };

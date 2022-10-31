@@ -4,10 +4,10 @@ import { Link } from "react-router-dom";
 import { addCartItem } from "../reducers/cartItemsReducer";
 import { setMessageObject } from "../reducers/messageReducer";
 
-const Products = () => {
+const Products = ({ products }) => {
   const dispatch = useDispatch();
   //retrive all products from redux store
-  const products = useSelector((state) => state.products);
+  // const products = useSelector((state) => state.products);
   const user = useSelector((state) => state.users);
   const message = useSelector((state) => state.messages);
 
@@ -26,9 +26,8 @@ const Products = () => {
       <div className="gallery">
         {products.map((product, index) => {
           return (
-            <Link key={index} to={`/product/${product.id}`} className="content">
-              {" "}
-              <div>
+            <div key={index} className="content">
+              <Link to={`/product/${product.id}`}>
                 <img
                   className="product-img"
                   src={product.imagePath}
@@ -37,14 +36,14 @@ const Products = () => {
                 <h3 className="title">{product.productName.slice(0, 20)}</h3>
                 <p className="desc">{product.specification.slice(0, 50)}...</p>
                 <h6 className="price">Rs.{product.price}</h6>
-                <button
-                  className="add-to-cart-btn"
-                  onClick={() => addToCart(product.id)}
-                >
-                  Add to cart
-                </button>
-              </div>
-            </Link>
+              </Link>
+              <button
+                className="add-to-cart-btn"
+                onClick={() => addToCart(product.id)}
+              >
+                Add to cart
+              </button>
+            </div>
           );
         })}
       </div>
