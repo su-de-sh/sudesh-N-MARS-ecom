@@ -6,7 +6,10 @@ import Router from "./components/Router";
 
 import { initializeProducts } from "./reducers/productReducer";
 import { setUserObject } from "./reducers/userReducer";
-import { initializeCartItems } from "./reducers/cartItemsReducer";
+import {
+  initializeCartItemsDatabase,
+  initializeCartItemsLocal,
+} from "./reducers/cartItemsReducer";
 import { useMatch } from "react-router-dom";
 
 const App = () => {
@@ -19,7 +22,8 @@ const App = () => {
     // load products in store form backend
 
     dispatch(initializeProducts());
-    if (user) dispatch(initializeCartItems());
+    if (user) dispatch(initializeCartItemsDatabase());
+    else dispatch(initializeCartItemsLocal());
 
     // set logged in user
     dispatch(setUserObject(JSON.parse(user)));
