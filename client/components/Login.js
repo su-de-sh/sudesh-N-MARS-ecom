@@ -34,14 +34,19 @@ const Login = () => {
       <div className="wrapper container">
         <div className="margin-sm  width-md container-md">
           <form className="width-md text-center" onSubmit={handleLogin}>
-            <input type="email" name="email" placeholder="Email" />
-            <input type="password" name="password" placeholder="Password" />
+            <input id="email" type="email" name="email" placeholder="Email" />
+            <input
+              id="password"
+              type="password"
+              name="password"
+              placeholder="Password"
+            />
             <p className="message">{message}</p>
 
             <p className="text-white margin-top-md">
               Not registered? <Link to="/signup">SignUp</Link>
             </p>
-            <button className="primary-button ">Login</button>
+            <button className="primary-button">Login</button>
           </form>
         </div>
       </div>
