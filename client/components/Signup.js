@@ -10,6 +10,7 @@ const Signup = () => {
   const message = useSelector((state) => state.messages);
   const handleSignUp = async (event) => {
     event.preventDefault();
+
     const firstName = event.target.firstname.value;
     const lastName = event.target.lastname.value;
     const email = event.target.email.value;

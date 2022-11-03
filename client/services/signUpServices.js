@@ -1,6 +1,6 @@
 import axios from "axios";
 import { basePath } from "../utils";
-const baseUrl = basePath + "/api/users";
+const baseUrl = basePath + "api/users";
 // const baseUrl = "/api/users";
 
 const getAll = async () => {
