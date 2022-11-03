@@ -20,11 +20,29 @@ const cartItemsSlice = createSlice({
 export const initializeCartItemsDatabase = () => {
   return async (dispatch) => {
     const itemsInCart = await orderServices.getCartItems();
-    const cartItems = itemsInCart.map((item) => {
-      return { ...item.product, noOfProduct: item.quantity };
-    });
+    // console.log(itemsInCart);
+    const itemsInCartLocal = JSON.parse(
+      window.localStorage.getItem("cartItems")
+    );
+    // console.log(itemsInCartLocal);
+    if (!itemsInCart.length && itemsInCartLocal.length) {
+      // console.log(itemsInCart);
+      // const promiseArray = itemsInCartLocal.map((item) =>
+      //   dispatch(addCartItemDatabase(item.id))
+      // );
+      // await Promise.all(promiseArray);
 
-    dispatch(setItems(cartItems));
+      dispatch(setItems(itemsInCartLocal));
+      // window.localStorage.setItem("cartItems", JSON.stringify([]));
+    } else if (!itemsInCart.length && !itemsInCartLocal.length) {
+      dispatch(setItems([]));
+    } else {
+      const cartItems = itemsInCart.map((item) => {
+        return { ...item.product, noOfProduct: item.quantity };
+      });
+
+      dispatch(setItems(cartItems));
+    }
   };
 };
 export const initializeCartItemsLocal = () => {

@@ -1,7 +1,7 @@
 import axios from "axios";
 import { basePath } from "../utils";
 // const baseUrl = "/api/users/shipping";
-const baseUrl = basePath + "/api/users/shipping";
+const baseUrl = basePath + "api/users/shipping";
 const add = async (shippingAddress) => {
   const token = await JSON.parse(window.localStorage.getItem("loggedinUser"))
     .token;
