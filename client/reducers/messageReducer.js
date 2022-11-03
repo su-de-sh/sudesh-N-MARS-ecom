@@ -17,7 +17,7 @@ export const setMessageObject = (message) => {
     dispatch(setMessage(message));
     setTimeout(() => {
       dispatch(setMessage(null));
-    }, 3000);
+    }, 5000);
   };
 };
 

@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 
 const Cart = () => {
   const cartItems = useSelector((state) => state.cartItems);
+  const user = useSelector((state) => state.users);
 
   const increaseQnty = () => {
     // console.log("increase");
@@ -22,7 +23,7 @@ const Cart = () => {
   }
 
   const total = cartItems.reduce((a, b) => {
-    return (a = a + b.product.price * b.quantity);
+    return (a = a + b.price * b.noOfProduct);
   }, 0);
 
   const shippingFee = 100;
@@ -43,17 +44,17 @@ const Cart = () => {
                     <td>
                       <img
                         className="cart-image"
-                        src={item.product.imagePath}
-                        alt={item.product.productName}
+                        src={item.imagePath}
+                        alt={item.productName}
                       />
                     </td>
                     <td style={{ display: "block" }}>
-                      {item.product.productName}
+                      {item.productName}
                       <h5 style={{ color: "red" }}>
-                        *Only {item.product.quantity} in stock
+                        *Only {item.quantity} in stock
                       </h5>
                     </td>
-                    <td>Rs. {item.product.price}</td>
+                    <td>Rs. {item.price}</td>
                     <td>
                       <button
                         className="no-button no-button-font-sm"
@@ -62,7 +63,7 @@ const Cart = () => {
                         {" "}
                         -{" "}
                       </button>
-                      {item.quantity}
+                      {item.noOfProduct}
                       <button
                         className="no-button no-button-font-sm"
                         onClick={increaseQnty}
@@ -95,11 +96,22 @@ const Cart = () => {
               <div>Rs. {total + shippingFee}</div>
             </div>
 
-            <Link to="/checkout">
-              <button className="checkout-cart-button ">
-                Proceed to Checkout
-              </button>
-            </Link>
+            {user ? (
+              <Link to="/checkout">
+                <button className="checkout-cart-button ">
+                  Proceed to Checkout
+                </button>
+              </Link>
+            ) : (
+              <div>
+                <p className="flex split-center orange-color">
+                  Login first to checkout!!
+                </p>
+                <button className="checkout-cart-button-disable" disabled>
+                  Proceed to Checkout
+                </button>
+              </div>
+            )}
           </div>
         </div>
       </div>

@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import orderServices from "../services/orderServices";
+import productServices from "../services/productServices";
 
 const cartItemsSlice = createSlice({
   name: "cartItems",
@@ -16,14 +17,37 @@ const cartItemsSlice = createSlice({
   },
 });
 
-export const initializeCartItems = () => {
+export const initializeCartItemsDatabase = () => {
   return async (dispatch) => {
-    const cartItems = await orderServices.getCartItems();
+    const itemsInCart = await orderServices.getCartItems();
+    const cartItems = itemsInCart.map((item) => {
+      return { ...item.product, noOfProduct: item.quantity };
+    });
 
     dispatch(setItems(cartItems));
   };
 };
-export const addCartItem = (productId) => {
+export const initializeCartItemsLocal = () => {
+  return async (dispatch) => {
+    const itemsInCart = JSON.parse(window.localStorage.getItem("cartItems"));
+    // const cartItems = itemsInCart.map((item) => {
+    //   return { ...item};
+    // });
+
+    if (!itemsInCart) {
+      dispatch(setItems([]));
+      window.localStorage.setItem("cartItems", JSON.stringify([]));
+    }
+    // const cartItems = itemsInCart.map((item) => {
+    //   return { ...item.product, noOfProduct: item.quantity };
+    // });
+    // console.log(cartItems);
+    else {
+      dispatch(setItems(itemsInCart));
+    }
+  };
+};
+export const addCartItemDatabase = (productId) => {
   return async (dispatch) => {
     const order = await orderServices.createOrder(productId);
     const products = await orderServices.getAll();
@@ -32,7 +56,22 @@ export const addCartItem = (productId) => {
       (product) => product.productId === order.productId
     );
 
-    dispatch(addItem(addedItem));
+    dispatch(addItem({ ...addedItem.product, noOfProduct: 1 }));
+  };
+};
+
+export const addCartItemLocal = (productId) => {
+  return async (dispatch) => {
+    const products = await productServices.getAll();
+    // console.log(productId, products);
+    const addedItem = products.find((product) => product.id === productId);
+
+    dispatch(addItem({ ...addedItem, noOfProduct: 1 }));
+    // dispatch(addItem(addedItem));
+
+    const itemsInCart = JSON.parse(window.localStorage.getItem("cartItems"));
+    itemsInCart.push({ ...addedItem, noOfProduct: 1 });
+    window.localStorage.setItem("cartItems", JSON.stringify(itemsInCart));
   };
 };
 
