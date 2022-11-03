@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 
 const Cart = () => {
   const cartItems = useSelector((state) => state.cartItems);
+  const user = useSelector((state) => state.users);
 
   const increaseQnty = () => {
     // console.log("increase");
@@ -95,11 +96,22 @@ const Cart = () => {
               <div>Rs. {total + shippingFee}</div>
             </div>
 
-            <Link to="/checkout">
-              <button className="checkout-cart-button ">
-                Proceed to Checkout
-              </button>
-            </Link>
+            {user ? (
+              <Link to="/checkout">
+                <button className="checkout-cart-button ">
+                  Proceed to Checkout
+                </button>
+              </Link>
+            ) : (
+              <div>
+                <p className="flex split-center orange-color">
+                  Login first to checkout!!
+                </p>
+                <button className="checkout-cart-button-disable" disabled>
+                  Proceed to Checkout
+                </button>
+              </div>
+            )}
           </div>
         </div>
       </div>

@@ -46,7 +46,7 @@ const NavBar = () => {
 
         <div className="flex split-pair align-center ">
           <Link to="/cart" className="flex split-pair align-center">
-            {user ? <h5>({cartItems.length || 0})</h5> : <h5>(0)</h5>}
+            <h5>({cartItems.length || 0})</h5>
             <img
               src={cartIcon}
               alt="cart-icon"

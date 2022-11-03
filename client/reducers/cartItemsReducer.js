@@ -23,7 +23,7 @@ export const initializeCartItemsDatabase = () => {
     const cartItems = itemsInCart.map((item) => {
       return { ...item.product, noOfProduct: item.quantity };
     });
-    console.log(cartItems);
+
     dispatch(setItems(cartItems));
   };
 };
@@ -33,9 +33,10 @@ export const initializeCartItemsLocal = () => {
     // const cartItems = itemsInCart.map((item) => {
     //   return { ...item};
     // });
-    console.log(itemsInCart, "items in cart");
+
     if (!itemsInCart) {
       dispatch(setItems([]));
+      window.localStorage.setItem("cartItems", JSON.stringify([]));
     }
     // const cartItems = itemsInCart.map((item) => {
     //   return { ...item.product, noOfProduct: item.quantity };
@@ -55,8 +56,6 @@ export const addCartItemDatabase = (productId) => {
       (product) => product.productId === order.productId
     );
 
-    console.log({ ...addedItem.product, noOfProduct: 1 });
-
     dispatch(addItem({ ...addedItem.product, noOfProduct: 1 }));
   };
 };
@@ -66,13 +65,13 @@ export const addCartItemLocal = (productId) => {
     const products = await productServices.getAll();
     // console.log(productId, products);
     const addedItem = products.find((product) => product.id === productId);
-    console.log({ ...addedItem, noOfProduct: 1 });
+
     dispatch(addItem({ ...addedItem, noOfProduct: 1 }));
     // dispatch(addItem(addedItem));
-    window.localStorage.setItem(
-      "cartItems",
-      JSON.stringify({ ...addedItem, noOfProduct: 1 })
-    );
+
+    const itemsInCart = JSON.parse(window.localStorage.getItem("cartItems"));
+    itemsInCart.push({ ...addedItem, noOfProduct: 1 });
+    window.localStorage.setItem("cartItems", JSON.stringify(itemsInCart));
   };
 };
 

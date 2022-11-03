@@ -1,6 +1,9 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addCartItem } from "../reducers/cartItemsReducer";
+import {
+  addCartItemDatabase,
+  addCartItemLocal,
+} from "../reducers/cartItemsReducer";
 import { setMessageObject } from "../reducers/messageReducer";
 
 const ProductDetail = ({ productDetail }) => {
@@ -10,10 +13,11 @@ const ProductDetail = ({ productDetail }) => {
 
   const addToCart = async (productId) => {
     if (user) {
-      dispatch(addCartItem(productId));
+      dispatch(addCartItemDatabase(productId));
       dispatch(setMessageObject("Added item to cart successfully!!"));
     } else {
-      dispatch(setMessageObject("Login first!!"));
+      dispatch(addCartItemLocal(productId));
+      dispatch(setMessageObject("Added item to cart successfully!!"));
     }
   };
   return (
