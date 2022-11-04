@@ -33,9 +33,9 @@ const App = () => {
   const matchProduct = useMatch("/product/:id");
   // console.log(matchProduct);
 
-  if (!products.length) {
-    return null;
-  }
+  // if (!products.length) {
+  //   return null;
+  // }
   const productDetail = matchProduct
     ? products.find((prod) => {
         return prod.id === Number(matchProduct.params.id);

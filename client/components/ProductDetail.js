@@ -11,6 +11,9 @@ const ProductDetail = ({ productDetail }) => {
   const user = useSelector((state) => state.users);
   const message = useSelector((state) => state.messages);
 
+  if (!productDetail) {
+    return null;
+  }
   const addToCart = async (productId) => {
     if (user) {
       dispatch(addCartItemDatabase(productId));
