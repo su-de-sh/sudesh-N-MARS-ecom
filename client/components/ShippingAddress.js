@@ -19,7 +19,7 @@ const ShippingAddress = () => {
     // const response = await shippingServices.add(shippingAddress);
     // console.log(response);
     dispatch(setShippingAddress(shippingAddress));
-    navigate("/checkout");
+    navigate("/cart");
   };
 
   return (

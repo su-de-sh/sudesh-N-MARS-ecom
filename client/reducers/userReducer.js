@@ -12,11 +12,11 @@ const userSlice = createSlice({
 
       return user;
     },
-    setUserShippingAddress(state, action) {
-      const user = action.payload;
+    // setUserShippingAddress(state, action) {
+    //   const user = action.payload;
 
-      return user;
-    },
+    //   return user;
+    // },
   },
 });
 
@@ -42,10 +42,10 @@ export const setShippingAddress = (shippingAddress) => {
     // console.log("anecdoteToupdate", anecdoteToUpdate);
     const updatedUser = await shippingServices.add(shippingAddress);
     // console.log(updatedUser, "updateduser");
-    const updatedContent = await signUpServices.getOne(updatedUser.id);
-    // console.log(updatedContent);
-    dispatch(setUserShippingAddress(updatedContent));
-    window.localStorage.setItem("loggedinUser", JSON.stringify(updatedContent));
+    const updatedContent = await signUpServices.getOne(updatedUser.email);
+
+    dispatch(setUsers(updatedContent));
+    // window.localStorage.setItem("loggedinUser", JSON.stringify(updatedContent));
   };
 };
 export const { setUsers, setUserShippingAddress } = userSlice.actions;

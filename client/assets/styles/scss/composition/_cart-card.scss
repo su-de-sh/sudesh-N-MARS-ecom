@@ -106,3 +106,28 @@
 .orange-color{
     color:orangered;
 }
+
+
+.shipping-button{
+    width: 90%;
+    height: 3rem;
+     margin: 10px;
+     background-color: $dark-color;
+     color: $light-color;
+     border-radius: 10px;
+    
+        &-disable{
+            width: 90%;
+            height: 3rem;
+            margin: 10px;
+            background-color: grey;
+            color: $light-color;
+            border-radius: 10px;
+        }
+     &:hover{
+         background: orangered;
+         color: $light-color;
+     }
+
+
+ }
