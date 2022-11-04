@@ -7,9 +7,10 @@ const Checkout = () => {
   const cartItems = useSelector((state) => state.cartItems);
   const user = useSelector((state) => state.users);
 
-  // if (!user || !cartItems) {
-  //   return null;
-  // }
+  // console.log(user, cartItems, "user");
+  if (!user || !cartItems) {
+    return null;
+  }
   // if (user.shippingAddress) {
   //   const [name, address, phone] = user.shippingAddress.split(",");
   // }

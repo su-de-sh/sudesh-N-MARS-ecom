@@ -14,20 +14,21 @@ import { useMatch } from "react-router-dom";
 
 const App = () => {
   const dispatch = useDispatch();
-  const user = window.localStorage.getItem("loggedinUser");
+  const user = useSelector((state) => state.users);
   const cartItems = useSelector((state) => state.cartItems);
   const products = useSelector((state) => state.products);
 
   useEffect(() => {
     // load products in store form backend
+    // const user = window.localStorage.getItem("loggedinUser");
 
     dispatch(initializeProducts());
     if (user) dispatch(initializeCartItemsDatabase());
     else dispatch(initializeCartItemsLocal());
 
     // set logged in user
-    dispatch(setUserObject(JSON.parse(user)));
-  }, [dispatch, user]);
+    dispatch(setUserObject());
+  }, [dispatch]);
 
   const matchProduct = useMatch("/product/:id");
   // console.log(matchProduct);

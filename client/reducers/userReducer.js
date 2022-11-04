@@ -20,9 +20,17 @@ const userSlice = createSlice({
   },
 });
 
-export const setUserObject = (user) => {
+export const setUserObject = () => {
   return async (dispatch) => {
-    dispatch(setUsers(user));
+    let user = JSON.parse(window.localStorage.getItem("loggedinUser"));
+
+    if (!user) {
+      dispatch(setUsers(null));
+    } else {
+      user = await signUpServices.getOne(user.email);
+
+      dispatch(setUsers(user));
+    }
   };
 };
 

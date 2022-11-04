@@ -7,8 +7,8 @@ userRouter.get("/", async (req, res) => {
 
   res.json(users);
 });
-userRouter.get("/:id", async (req, res) => {
-  const user = await User.findOne({ where: { id: req.params.id } });
+userRouter.get("/:email", async (req, res) => {
+  const user = await User.findOne({ where: { email: req.params.email } });
 
   res.json(user);
 });
