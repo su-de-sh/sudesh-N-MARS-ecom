@@ -25,8 +25,22 @@ export const initializeCartItems = () => {
     const user = JSON.parse(window.localStorage.getItem("loggedinUser"));
     if (user) {
       const itemsInCart = await orderServices.getCartItems(user);
+      const itemsInLocalStorage = JSON.parse(
+        window.localStorage.getItem("cartItems")
+      );
+      // !itemsInCart.length && itemsInLocalStorage.length
+      if (itemsInLocalStorage) {
+        console.log("lets upload to database and delete from local storage");
 
-      dispatch(setItems(itemsInCart));
+        const items = itemsInLocalStorage.map((item) =>
+          dispatch(addItemToCart(item.id))
+        );
+        console.log(items);
+        const promise = await Promise.all(items);
+        // console.log(promise);
+      }
+
+      // dispatch(setItems(itemsInCart));
     } else {
       const itemsInCart = JSON.parse(window.localStorage.getItem("cartItems"));
       if (!itemsInCart) {
@@ -66,16 +80,20 @@ export const initializeCartItems = () => {
 
 export const addItemToCart = (productId, quantity = 1) => {
   return async (dispatch) => {
+    // console.log("addItemToCart");
     const user = JSON.parse(window.localStorage.getItem("loggedinUser"));
     if (user) {
       const addedItem = await orderServices.createOrder(productId, quantity);
+      console.log("addedItem", addedItem);
       const products = await productServices.getAll();
+      console.log("products", products);
       // console.log(addedItem);
       const order = products.find(
         (product) => product.id === addedItem.productId
       );
       order.noOfItems = quantity;
       dispatch(addItem(order));
+      // console.log("last of add to cart");
     } else {
       const itemsInCart = JSON.parse(window.localStorage.getItem("cartItems"));
 

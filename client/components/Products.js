@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import {
   addCartItemDatabase,
   addCartItemLocal,
+  addItemToCart,
 } from "../reducers/cartItemsReducer";
 import { setMessageObject } from "../reducers/messageReducer";
 
@@ -15,13 +16,8 @@ const Products = ({ products }) => {
   const message = useSelector((state) => state.messages);
 
   const addToCart = async (productId) => {
-    if (user) {
-      dispatch(addCartItemDatabase(productId));
-      dispatch(setMessageObject("Added item to cart successfully!!"));
-    } else {
-      dispatch(addCartItemLocal(productId));
-      dispatch(setMessageObject("Added item to cart successfully!!"));
-    }
+    dispatch(addItemToCart(productId));
+    dispatch(setMessageObject("Added item to cart successfully!!"));
   };
   return (
     <div className="wrapper ">

@@ -3,13 +3,13 @@ import { basePath } from "../utils";
 
 const baseUrl = basePath + "api/orderDetails";
 
-const getCartItems = async () => {
-  const token = await JSON.parse(window.localStorage.getItem("loggedinUser"))
-    .token;
+const getCartItems = async (user) => {
+  // const token = await JSON.parse(window.localStorage.getItem("loggedinUser"))
+  //   .token;
 
   const config = {
     headers: {
-      Authorization: `bearer ${token}`,
+      Authorization: `bearer ${user.token}`,
     },
   };
   const response = await axios.get(`${baseUrl}/cart`, config);
@@ -22,7 +22,21 @@ const getAll = async () => {
   return response.data;
 };
 
-const createOrder = async (productId) => {
+const createOrder = async (productId, quantity) => {
+  const token = await JSON.parse(window.localStorage.getItem("loggedinUser"))
+    .token;
+  console.log("token", token);
+  const config = {
+    headers: {
+      Authorization: `bearer ${token}`,
+    },
+  };
+  const response = await axios.post(baseUrl, { productId, quantity }, config);
+
+  return response.data;
+};
+
+const placeOrder = async () => {
   const token = await JSON.parse(window.localStorage.getItem("loggedinUser"))
     .token;
 
@@ -31,9 +45,8 @@ const createOrder = async (productId) => {
       Authorization: `bearer ${token}`,
     },
   };
-  const response = await axios.post(baseUrl, { productId }, config);
-
-  return response.data;
+  // console.log(config, "config");
+  const response = await axios.put("/api/orders", {}, config);
 };
 
-export default { createOrder, getCartItems, getAll };
+export default { createOrder, getCartItems, getAll, placeOrder };
