@@ -25,22 +25,22 @@ export const initializeCartItems = () => {
     const user = JSON.parse(window.localStorage.getItem("loggedinUser"));
     if (user) {
       const itemsInCart = await orderServices.getCartItems(user);
-      const itemsInLocalStorage = JSON.parse(
-        window.localStorage.getItem("cartItems")
-      );
+      // const itemsInLocalStorage = JSON.parse(
+      //   window.localStorage.getItem("cartItems")
+      // );
       // !itemsInCart.length && itemsInLocalStorage.length
-      if (itemsInLocalStorage) {
-        console.log("lets upload to database and delete from local storage");
+      // if (itemsInLocalStorage) {
+      //   console.log("lets upload to database and delete from local storage");
 
-        const items = itemsInLocalStorage.map((item) =>
-          dispatch(addItemToCart(item.id))
-        );
-        console.log(items);
-        const promise = await Promise.all(items);
-        // console.log(promise);
-      }
+      //   const items = itemsInLocalStorage.map((item) =>
+      //     dispatch(addItemToCart(item.id))
+      //   );
+      //   console.log(items);
+      //   const promise = await Promise.all(items);
+      //   // console.log(promise);
+      // }
 
-      // dispatch(setItems(itemsInCart));
+      dispatch(setItems(itemsInCart));
     } else {
       const itemsInCart = JSON.parse(window.localStorage.getItem("cartItems"));
       if (!itemsInCart) {

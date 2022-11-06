@@ -15,17 +15,19 @@ orderRouter.post("/", async (req, res) => {
 
 orderRouter.put("/", async (req, res) => {
   // console.log(req.user);
-  const order = await Order.findAll({ where: { userId: req.user.id } });
-  console.log(order);
-  // const updatedOrder = await Order.update(
-  //   {
-  //     status: "placed",
-  //   },
-  //   {
-  //     where: { id: order.id },
-  //   }
-  // );
-  // console.log(updatedOrder);
+  const order = await Order.findOne({
+    where: { userId: req.user.id, status: "pending" },
+  });
+
+  await Order.update(
+    {
+      status: "placed",
+    },
+    {
+      where: { id: order.id },
+    }
+  );
+  res.send("order placed successfully!");
 });
 
 module.exports = orderRouter;

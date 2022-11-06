@@ -47,6 +47,7 @@ const placeOrder = async () => {
   };
   // console.log(config, "config");
   const response = await axios.put("/api/orders", {}, config);
+  return response.data;
 };
 
 export default { createOrder, getCartItems, getAll, placeOrder };

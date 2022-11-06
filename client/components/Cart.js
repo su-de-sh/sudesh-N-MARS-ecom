@@ -1,12 +1,16 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { initializeCartItems } from "../reducers/cartItemsReducer";
+import { setMessageObject } from "../reducers/messageReducer";
 import orderServices from "../services/orderServices";
 // import { Link } from "react-router-dom";
 
 const Cart = () => {
   const cartItems = useSelector((state) => state.cartItems);
   const user = useSelector((state) => state.users);
+  const message = useSelector((state) => state.messages);
+  const dispatch = useDispatch();
 
   const increaseQnty = () => {
     // console.log("increase");
@@ -17,7 +21,9 @@ const Cart = () => {
   };
 
   const handlePlaceOrder = async () => {
-    await orderServices.placeOrder();
+    const response = await orderServices.placeOrder();
+    dispatch(setMessageObject(response));
+    // dispatch(initializeCartItems());
   };
 
   if (!cartItems.length) {
@@ -38,6 +44,7 @@ const Cart = () => {
   return (
     <div className="wrapper ">
       <div className=" flex split-center h4"> Cart Items</div>
+      {message ? <div>{message}</div> : null}
       <div className="flex cart-gallery ">
         <div>
           <table>
