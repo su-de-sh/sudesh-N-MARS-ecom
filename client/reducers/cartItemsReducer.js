@@ -4,7 +4,6 @@ import { createSlice } from "@reduxjs/toolkit";
 import { useSelector } from "react-redux";
 import orderServices from "../services/orderServices";
 import productServices from "../services/productServices";
-const user = JSON.parse(window.localStorage.getItem("loggedinUser"));
 
 const cartItemsSlice = createSlice({
   name: "cartItems",
@@ -23,6 +22,7 @@ const cartItemsSlice = createSlice({
 
 export const initializeCartItems = () => {
   return async (dispatch) => {
+    const user = JSON.parse(window.localStorage.getItem("loggedinUser"));
     if (user) {
       const itemsInCart = await orderServices.getCartItems(user);
 
@@ -66,8 +66,15 @@ export const initializeCartItems = () => {
 
 export const addItemToCart = (productId, quantity = 1) => {
   return async (dispatch) => {
+    const user = JSON.parse(window.localStorage.getItem("loggedinUser"));
     if (user) {
-      const order = await orderServices.createOrder(productId, quantity);
+      const addedItem = await orderServices.createOrder(productId, quantity);
+      const products = await productServices.getAll();
+      // console.log(addedItem);
+      const order = products.find(
+        (product) => product.id === addedItem.productId
+      );
+      order.noOfItems = quantity;
       dispatch(addItem(order));
     } else {
       const itemsInCart = JSON.parse(window.localStorage.getItem("cartItems"));
@@ -75,7 +82,9 @@ export const addItemToCart = (productId, quantity = 1) => {
       const products = await productServices.getAll();
 
       const order = products.find((product) => product.id === productId);
+      order.noOfProduct = quantity;
       itemsInCart.push(order);
+
       window.localStorage.setItem("cartItems", JSON.stringify(itemsInCart));
 
       dispatch(setItems(itemsInCart));
