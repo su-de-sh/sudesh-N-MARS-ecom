@@ -1,6 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import orderServices from "../services/orderServices";
 // import { Link } from "react-router-dom";
 
 const Cart = () => {
@@ -15,6 +16,10 @@ const Cart = () => {
     // console.log("decrease");
   };
 
+  const handlePlaceOrder = async () => {
+    await orderServices.placeOrder();
+  };
+
   if (!cartItems.length) {
     return (
       <div className="flex split-center">
@@ -24,7 +29,8 @@ const Cart = () => {
   }
 
   const total = cartItems.reduce((a, b) => {
-    return (a = a + b.price * b.noOfProduct);
+    return (a =
+      a + (b.price || b.product.price) * (b.noOfProduct || b.quantity));
   }, 0);
 
   const shippingFee = 100;
@@ -45,17 +51,20 @@ const Cart = () => {
                     <td>
                       <img
                         className="cart-image"
-                        src={item.imagePath}
-                        alt={item.productName}
+                        src={item.imagePath || item.product.imagePath}
+                        alt={item.productName || item.product.productName}
                       />
                     </td>
                     <td style={{ display: "block" }}>
-                      {item.productName}
+                      {item.productName || item.product.productName}
                       <h5 style={{ color: "red" }}>
-                        *Only {item.quantity} in stock
+                        *Only{" "}
+                        {(item.product && item.product.quantity) ||
+                          item.quantity}{" "}
+                        in stock
                       </h5>
                     </td>
-                    <td>Rs. {item.price}</td>
+                    <td>Rs. {item.price || item.product.price}</td>
                     <td>
                       <button
                         className="no-button no-button-font-sm"
@@ -64,7 +73,7 @@ const Cart = () => {
                         {" "}
                         -{" "}
                       </button>
-                      {item.noOfProduct}
+                      {item.noOfProduct || item.quantity}
                       <button
                         className="no-button no-button-font-sm"
                         onClick={increaseQnty}
@@ -115,7 +124,10 @@ const Cart = () => {
                     </div>
                     <div className="line-1"></div>
 
-                    <button className="checkout-cart-button ">
+                    <button
+                      className="checkout-cart-button "
+                      onClick={handlePlaceOrder}
+                    >
                       Place Order
                     </button>
                   </div>
