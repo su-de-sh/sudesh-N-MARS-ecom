@@ -67,13 +67,21 @@ orderDetailRouter.post("/", async (req, res) => {
     });
 
     if (pendingOrder) {
-      const order = { productId: req.body.productId, orderId: pendingOrder.id };
+      const order = {
+        productId: req.body.productId,
+        orderId: pendingOrder.id,
+        quantity: req.body.quantity,
+      };
       const response = await OrderDetail.create(order);
       res.send(response);
     } else {
       const userId = req.user.id;
       const newOrder = await Order.create({ userId });
-      const order = { productId: req.body.productId, orderId: newOrder.id };
+      const order = {
+        productId: req.body.productId,
+        orderId: newOrder.id,
+        quantity: req.body.quantity,
+      };
       const response = await OrderDetail.create(order);
       res.json(response);
     }
