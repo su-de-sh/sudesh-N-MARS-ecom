@@ -18,8 +18,9 @@ const App = () => {
   useEffect(() => {
     dispatch(initializeProducts());
     dispatch(setUserObject());
+
     dispatch(initializeCartItems());
-  }, [dispatch]);
+  }, []);
 
   const matchProduct = useMatch("/product/:id");
   // console.log(matchProduct);
