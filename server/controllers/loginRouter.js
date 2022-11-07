@@ -26,7 +26,7 @@ loginRouter.post("/", async (req, res) => {
     firstName: user.firstName,
     lastName: user.lastName,
     shippingAddress: user.shippingAddress,
-    id: user._id,
+    id: user.id,
   });
 });
 

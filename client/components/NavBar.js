@@ -5,7 +5,7 @@ import searchIcon from "../assets/images/search-icon.png";
 import cartIcon from "../assets/images/cart.png";
 import { useDispatch, useSelector } from "react-redux";
 import { setUserObject } from "../reducers/userReducer";
-import { setItems } from "../reducers/cartItemsReducer";
+import { initializeCartItems } from "../reducers/cartItemsReducer";
 
 const NavBar = () => {
   const user = useSelector((state) => state.users);
@@ -17,7 +17,8 @@ const NavBar = () => {
   const handleLogout = () => {
     window.localStorage.removeItem("loggedinUser");
     dispatch(setUserObject(null));
-    dispatch(setItems([]));
+    // dispatch(setItems([]));
+    dispatch(initializeCartItems());
     navigate("/");
   };
   return (

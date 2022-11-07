@@ -13,4 +13,21 @@ orderRouter.post("/", async (req, res) => {
   res.send(response);
 });
 
+orderRouter.put("/", async (req, res) => {
+  // console.log(req.user);
+  const order = await Order.findOne({
+    where: { userId: req.user.id, status: "pending" },
+  });
+
+  await Order.update(
+    {
+      status: "placed",
+    },
+    {
+      where: { id: order.id },
+    }
+  );
+  res.send("order placed successfully!");
+});
+
 module.exports = orderRouter;

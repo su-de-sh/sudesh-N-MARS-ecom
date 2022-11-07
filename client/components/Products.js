@@ -1,27 +1,19 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import {
-  addCartItemDatabase,
-  addCartItemLocal,
-} from "../reducers/cartItemsReducer";
+import { addItemToCart } from "../reducers/cartItemsReducer";
 import { setMessageObject } from "../reducers/messageReducer";
 
 const Products = ({ products }) => {
   const dispatch = useDispatch();
   //retrive all products from redux store
   // const products = useSelector((state) => state.products);
-  const user = useSelector((state) => state.users);
+  // const user = useSelector((state) => state.users);
   const message = useSelector((state) => state.messages);
 
   const addToCart = async (productId) => {
-    if (user) {
-      dispatch(addCartItemDatabase(productId));
-      dispatch(setMessageObject("Added item to cart successfully!!"));
-    } else {
-      dispatch(addCartItemLocal(productId));
-      dispatch(setMessageObject("Added item to cart successfully!!"));
-    }
+    dispatch(addItemToCart(productId));
+    dispatch(setMessageObject("Added item to cart successfully!!"));
   };
   return (
     <div className="wrapper ">
