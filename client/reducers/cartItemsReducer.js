@@ -41,48 +41,46 @@ export const initializeCartItems = () => {
           // const promise = await Promise.all(items);
           // console.log(promise);
         });
-
-        dispatch(setItems(itemsInCart));
       } else {
-        const itemsInCart = JSON.parse(
-          window.localStorage.getItem("cartItems")
-        );
-        if (!itemsInCart) {
-          window.localStorage.setItem("cartItems", JSON.stringify([]));
-
-          dispatch(setItems([]));
-        } else {
-          dispatch(setItems(itemsInCart));
-        }
+        dispatch(setItems(itemsInCart));
       }
-      // const itemsInCart = await orderServices.getCartItems();
-      // // console.log(itemsInCart);
-      // const itemsInCartLocal = JSON.parse(
-      //   window.localStorage.getItem("cartItems")
-      // );
-      // // console.log(itemsInCartLocal);
-      // if (!itemsInCart.length && itemsInCartLocal.length) {
-      //   // console.log(itemsInCart);
-      //   const promiseArray = itemsInCartLocal.map((item) =>
-      //     dispatch(addCartItemDatabase(item.id))
-      //   );
-      //   await Promise.all(promiseArray);
+    } else {
+      const itemsInCart = JSON.parse(window.localStorage.getItem("cartItems"));
 
-      //   // dispatch(setItems(itemsInCartLocal));
-      //   // window.localStorage.setItem("cartItems", JSON.stringify([]));
-      // } else if (!itemsInCart.length && !itemsInCartLocal.length) {
-      //   dispatch(setItems([]));
-      // } else {
-      //   const cartItems = itemsInCart.map((item) => {
-      //     return { ...item.product, noOfProduct: item.quantity };
-      //   });
+      if (!itemsInCart) {
+        window.localStorage.setItem("cartItems", JSON.stringify([]));
 
-      //   dispatch(setItems(cartItems));
-      // }
+        dispatch(setItems([]));
+      } else {
+        dispatch(setItems(itemsInCart));
+      }
     }
+    // const itemsInCart = await orderServices.getCartItems();
+    // // console.log(itemsInCart);
+    // const itemsInCartLocal = JSON.parse(
+    //   window.localStorage.getItem("cartItems")
+    // );
+    // // console.log(itemsInCartLocal);
+    // if (!itemsInCart.length && itemsInCartLocal.length) {
+    //   // console.log(itemsInCart);
+    //   const promiseArray = itemsInCartLocal.map((item) =>
+    //     dispatch(addCartItemDatabase(item.id))
+    //   );
+    //   await Promise.all(promiseArray);
+
+    //   // dispatch(setItems(itemsInCartLocal));
+    //   // window.localStorage.setItem("cartItems", JSON.stringify([]));
+    // } else if (!itemsInCart.length && !itemsInCartLocal.length) {
+    //   dispatch(setItems([]));
+    // } else {
+    //   const cartItems = itemsInCart.map((item) => {
+    //     return { ...item.product, noOfProduct: item.quantity };
+    //   });
+
+    //   dispatch(setItems(cartItems));
+    // }
   };
 };
-
 export const addItemToCart = (productId, quantity = 1) => {
   return async (dispatch) => {
     // console.log("addItemToCart");
