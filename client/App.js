@@ -6,11 +6,7 @@ import Router from "./components/Router";
 
 import { initializeProducts } from "./reducers/productReducer";
 import { setUserObject } from "./reducers/userReducer";
-import {
-  initializeCartItems,
-  initializeCartItemsDatabase,
-  initializeCartItemsLocal,
-} from "./reducers/cartItemsReducer";
+import { initializeCartItems } from "./reducers/cartItemsReducer";
 import { useMatch } from "react-router-dom";
 
 const App = () => {

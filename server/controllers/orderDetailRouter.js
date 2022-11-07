@@ -72,6 +72,7 @@ orderDetailRouter.post("/", async (req, res) => {
         orderId: pendingOrder.id,
         quantity: req.body.quantity,
       };
+
       const response = await OrderDetail.create(order);
       res.send(response);
     } else {

@@ -1,7 +1,7 @@
 //
 
 import { createSlice } from "@reduxjs/toolkit";
-import { useSelector } from "react-redux";
+
 import orderServices from "../services/orderServices";
 import productServices from "../services/productServices";
 
@@ -25,56 +25,61 @@ export const initializeCartItems = () => {
     const user = JSON.parse(window.localStorage.getItem("loggedinUser"));
     if (user) {
       const itemsInCart = await orderServices.getCartItems(user);
-      // const itemsInLocalStorage = JSON.parse(
+      const itemsInLocalStorage = JSON.parse(
+        window.localStorage.getItem("cartItems")
+      );
+
+      if (!itemsInCart.length && itemsInLocalStorage.length) {
+        await dispatch(addItemToCart(itemsInLocalStorage[0].id));
+
+        itemsInLocalStorage.forEach((item, index) => {
+          if (index !== 0) {
+            dispatch(addItemToCart(item.id));
+          }
+
+          // console.log(items);
+          // const promise = await Promise.all(items);
+          // console.log(promise);
+        });
+
+        dispatch(setItems(itemsInCart));
+      } else {
+        const itemsInCart = JSON.parse(
+          window.localStorage.getItem("cartItems")
+        );
+        if (!itemsInCart) {
+          window.localStorage.setItem("cartItems", JSON.stringify([]));
+
+          dispatch(setItems([]));
+        } else {
+          dispatch(setItems(itemsInCart));
+        }
+      }
+      // const itemsInCart = await orderServices.getCartItems();
+      // // console.log(itemsInCart);
+      // const itemsInCartLocal = JSON.parse(
       //   window.localStorage.getItem("cartItems")
       // );
-      // !itemsInCart.length && itemsInLocalStorage.length
-      // if (itemsInLocalStorage) {
-      //   console.log("lets upload to database and delete from local storage");
-
-      //   const items = itemsInLocalStorage.map((item) =>
-      //     dispatch(addItemToCart(item.id))
+      // // console.log(itemsInCartLocal);
+      // if (!itemsInCart.length && itemsInCartLocal.length) {
+      //   // console.log(itemsInCart);
+      //   const promiseArray = itemsInCartLocal.map((item) =>
+      //     dispatch(addCartItemDatabase(item.id))
       //   );
-      //   console.log(items);
-      //   const promise = await Promise.all(items);
-      //   // console.log(promise);
+      //   await Promise.all(promiseArray);
+
+      //   // dispatch(setItems(itemsInCartLocal));
+      //   // window.localStorage.setItem("cartItems", JSON.stringify([]));
+      // } else if (!itemsInCart.length && !itemsInCartLocal.length) {
+      //   dispatch(setItems([]));
+      // } else {
+      //   const cartItems = itemsInCart.map((item) => {
+      //     return { ...item.product, noOfProduct: item.quantity };
+      //   });
+
+      //   dispatch(setItems(cartItems));
       // }
-
-      dispatch(setItems(itemsInCart));
-    } else {
-      const itemsInCart = JSON.parse(window.localStorage.getItem("cartItems"));
-      if (!itemsInCart) {
-        window.localStorage.setItem("cartItems", JSON.stringify([]));
-
-        dispatch(setItems([]));
-      } else {
-        dispatch(setItems(itemsInCart));
-      }
     }
-    // const itemsInCart = await orderServices.getCartItems();
-    // // console.log(itemsInCart);
-    // const itemsInCartLocal = JSON.parse(
-    //   window.localStorage.getItem("cartItems")
-    // );
-    // // console.log(itemsInCartLocal);
-    // if (!itemsInCart.length && itemsInCartLocal.length) {
-    //   // console.log(itemsInCart);
-    //   const promiseArray = itemsInCartLocal.map((item) =>
-    //     dispatch(addCartItemDatabase(item.id))
-    //   );
-    //   await Promise.all(promiseArray);
-
-    //   // dispatch(setItems(itemsInCartLocal));
-    //   // window.localStorage.setItem("cartItems", JSON.stringify([]));
-    // } else if (!itemsInCart.length && !itemsInCartLocal.length) {
-    //   dispatch(setItems([]));
-    // } else {
-    //   const cartItems = itemsInCart.map((item) => {
-    //     return { ...item.product, noOfProduct: item.quantity };
-    //   });
-
-    //   dispatch(setItems(cartItems));
-    // }
   };
 };
 
@@ -84,9 +89,9 @@ export const addItemToCart = (productId, quantity = 1) => {
     const user = JSON.parse(window.localStorage.getItem("loggedinUser"));
     if (user) {
       const addedItem = await orderServices.createOrder(productId, quantity);
-      console.log("addedItem", addedItem);
+
       const products = await productServices.getAll();
-      console.log("products", products);
+
       // console.log(addedItem);
       const order = products.find(
         (product) => product.id === addedItem.productId

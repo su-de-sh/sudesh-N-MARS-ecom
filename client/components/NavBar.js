@@ -5,7 +5,7 @@ import searchIcon from "../assets/images/search-icon.png";
 import cartIcon from "../assets/images/cart.png";
 import { useDispatch, useSelector } from "react-redux";
 import { setUserObject } from "../reducers/userReducer";
-import { initializeCartItems, setItems } from "../reducers/cartItemsReducer";
+import { initializeCartItems } from "../reducers/cartItemsReducer";
 
 const NavBar = () => {
   const user = useSelector((state) => state.users);

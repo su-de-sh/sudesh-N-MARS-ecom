@@ -25,7 +25,7 @@ const getAll = async () => {
 const createOrder = async (productId, quantity) => {
   const token = await JSON.parse(window.localStorage.getItem("loggedinUser"))
     .token;
-  console.log("token", token);
+
   const config = {
     headers: {
       Authorization: `bearer ${token}`,
