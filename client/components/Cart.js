@@ -1,6 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { initializeCartItems } from "../reducers/cartItemsReducer";
 import { setMessageObject } from "../reducers/messageReducer";
 import orderServices from "../services/orderServices";
 // import { Link } from "react-router-dom";
@@ -22,7 +23,7 @@ const Cart = () => {
   const handlePlaceOrder = async () => {
     const response = await orderServices.placeOrder();
     dispatch(setMessageObject(response));
-    // dispatch(initializeCartItems());
+    dispatch(initializeCartItems());
   };
 
   if (!cartItems.length) {
