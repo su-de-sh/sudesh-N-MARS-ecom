@@ -1,7 +1,6 @@
 //
 
 import { createSlice } from "@reduxjs/toolkit";
-
 import orderServices from "../services/orderServices";
 import productServices from "../services/productServices";
 
@@ -23,13 +22,16 @@ const cartItemsSlice = createSlice({
 export const initializeCartItems = () => {
   return async (dispatch) => {
     const user = JSON.parse(window.localStorage.getItem("loggedinUser"));
+
     if (user) {
       const itemsInCart = await orderServices.getCartItems(user);
+
       const itemsInLocalStorage = JSON.parse(
         window.localStorage.getItem("cartItems")
       );
 
       if (!itemsInCart.length && itemsInLocalStorage.length) {
+        await dispatch(setItems([]));
         await dispatch(addItemToCart(itemsInLocalStorage[0].id));
 
         itemsInLocalStorage.forEach((item, index) => {
@@ -41,6 +43,7 @@ export const initializeCartItems = () => {
           // const promise = await Promise.all(items);
           // console.log(promise);
         });
+        window.localStorage.setItem("cartItems", JSON.stringify([]));
       } else {
         dispatch(setItems(itemsInCart));
       }
